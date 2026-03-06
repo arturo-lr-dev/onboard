@@ -11,11 +11,12 @@ import ContactForm from '../components/ContactForm.astro';
       <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="w-2 h-2 bg-[var(--lime)] animate-pulse-glow"></div>
-          <span class="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-wider">ONBOARD</span>
+          <span class="mono text-sm font-bold tracking-wider">ONBOARD</span>
         </div>
         <div class="hidden md:flex items-center gap-8">
           <a href="#problem" class="section-label hover:text-[var(--text-primary)] transition-colors">Problem</a>
           <a href="#solution" class="section-label hover:text-[var(--text-primary)] transition-colors">Solution</a>
+          <a href="#who" class="section-label hover:text-[var(--text-primary)] transition-colors">Who</a>
           <a href="#contact" class="section-label hover:text-[var(--text-primary)] transition-colors">Access</a>
         </div>
         <a href="#contact" class="btn-primary !py-2 !px-4 text-xs">
@@ -24,61 +25,89 @@ import ContactForm from '../components/ContactForm.astro';
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 px-6 min-h-screen flex items-center">
-      <!-- Background -->
+    <!-- ============================== -->
+    <!-- HERO with email capture + terminal -->
+    <!-- ============================== -->
+    <section class="relative pt-28 pb-16 px-6 min-h-screen flex items-center">
       <div class="absolute inset-0 dot-grid opacity-30 pointer-events-none"></div>
       <div class="absolute top-1/4 -right-32 w-[500px] h-[500px] bg-[var(--lime)] rounded-full opacity-[0.02] blur-[120px] pointer-events-none"></div>
 
       <div class="max-w-7xl mx-auto relative z-10 w-full">
-        <div class="stagger-in">
-          <!-- Meta line -->
-          <div class="flex items-center gap-3 mb-10">
-            <div class="section-number">01</div>
-            <div class="w-12 h-px bg-[var(--lime)]"></div>
-            <div class="section-label">System Overview</div>
+        <div class="grid lg:grid-cols-[1.1fr,1fr] gap-12 lg:gap-16 items-center">
+
+          <!-- Left: Copy + email capture -->
+          <div class="stagger-in">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="section-number">01</div>
+              <div class="w-12 h-px bg-[var(--lime)]"></div>
+              <div class="section-label">System Overview</div>
+            </div>
+
+            <h1 class="heading-display text-[clamp(2.75rem,6vw,6rem)] mb-6 max-w-2xl">
+              Enterprise-Grade<br/>
+              <span class="text-[var(--lime)]">Onboarding</span><br/>
+              for AI Agents
+            </h1>
+
+            <p class="text-lg text-[var(--text-secondary)] mb-8 max-w-xl leading-relaxed">
+              Stop deploying agents blindly. Give them context, access, and compliance from day one.
+            </p>
+
+            <!-- Inline email capture (hero CTA) -->
+            <form id="hero-email" class="flex gap-3 max-w-md mb-6" action="https://formspree.io/f/xreygybr" method="POST">
+              <input
+                type="email"
+                name="email"
+                required
+                class="flex-1 bg-[var(--bg-elevated)] border border-[var(--border)] px-4 py-3.5 text-sm mono placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
+                placeholder="you@company.com"
+              />
+              <input type="hidden" name="_source" value="hero" />
+              <button type="submit" class="btn-primary !py-3.5 whitespace-nowrap">
+                Get Access
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </form>
+
+            <p class="text-xs text-[var(--text-tertiary)] mono mb-10">
+              Free for pilot companies. <span class="text-[var(--lime)]">12 spots remaining.</span>
+            </p>
+
+            <!-- Stats row -->
+            <div class="divider-lime max-w-md mb-8"></div>
+            <div class="grid grid-cols-3 max-w-md gap-px">
+              <div class="pr-6">
+                <div class="mono text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-1">Hours</div>
+                <div class="section-label">not weeks to prod</div>
+              </div>
+              <div class="px-6 border-l border-[var(--border)]">
+                <div class="mono text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-1">100%</div>
+                <div class="section-label">compliant day one</div>
+              </div>
+              <div class="pl-6 border-l border-[var(--border)]">
+                <div class="mono text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-1">Zero</div>
+                <div class="section-label">security gaps</div>
+              </div>
+            </div>
           </div>
 
-          <!-- Headline -->
-          <h1 class="heading-display text-[clamp(3rem,8vw,7.5rem)] mb-8 max-w-5xl">
-            Enterprise-Grade<br/>
-            <span class="text-[var(--lime)]">Onboarding</span><br/>
-            for AI Agents
-          </h1>
-
-          <!-- Subhead -->
-          <p class="text-lg md:text-xl text-[var(--text-secondary)] mb-12 max-w-2xl leading-relaxed">
-            Stop deploying agents blindly. Give them context, access, and compliance from day one.
-          </p>
-
-          <!-- Divider -->
-          <div class="divider-lime max-w-2xl mb-12"></div>
-
-          <!-- Stats row -->
-          <div class="grid grid-cols-3 max-w-2xl gap-px">
-            <div class="pr-8">
-              <div class="font-['JetBrains_Mono',monospace] text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-1" data-counter="hours">Hours</div>
-              <div class="section-label">not weeks to prod</div>
-            </div>
-            <div class="px-8 border-l border-[var(--border)]">
-              <div class="font-['JetBrains_Mono',monospace] text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-1">100%</div>
-              <div class="section-label">compliant day one</div>
-            </div>
-            <div class="pl-8 border-l border-[var(--border)]">
-              <div class="font-['JetBrains_Mono',monospace] text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-1">Zero</div>
-              <div class="section-label">security incidents</div>
+          <!-- Right: Animated terminal mockup -->
+          <div class="hidden lg:block">
+            <div class="terminal rounded-lg shadow-2xl shadow-black/50" id="hero-terminal">
+              <div class="terminal-bar">
+                <div class="terminal-dot bg-[#FF5F57]"></div>
+                <div class="terminal-dot bg-[#FEBC2E]"></div>
+                <div class="terminal-dot bg-[#28C840]"></div>
+                <span class="ml-3 text-[10px] text-[var(--text-tertiary)] mono">onboard deploy --agent sales-copilot</span>
+              </div>
+              <div class="p-5 space-y-1 min-h-[340px]" id="terminal-output">
+                <!-- Lines injected by JS -->
+              </div>
             </div>
           </div>
 
-          <!-- CTA -->
-          <div class="mt-14">
-            <a href="#contact" class="btn-primary">
-              Request Early Access
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
 
@@ -89,80 +118,142 @@ import ContactForm from '../components/ContactForm.astro';
       </div>
     </section>
 
-    <!-- Divider -->
-    <div class="divider"></div>
+    <!-- ============================== -->
+    <!-- SOCIAL PROOF BAR -->
+    <!-- ============================== -->
+    <div class="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-5 px-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10">
+        <span class="section-label text-[var(--text-tertiary)]">Teams from</span>
+        <div class="flex items-center gap-8 md:gap-12 opacity-40">
+          <span class="mono text-sm font-bold tracking-wider">YC STARTUPS</span>
+          <span class="mono text-sm font-bold tracking-wider">SERIES A+</span>
+          <span class="mono text-sm font-bold tracking-wider">ENTERPRISE</span>
+          <span class="mono text-sm font-bold tracking-wider hidden sm:block">AI-FIRST COS</span>
+        </div>
+        <span class="section-label text-[var(--text-tertiary)]">are on the waitlist</span>
+      </div>
+    </div>
 
-    <!-- Problem Section -->
+    <!-- ============================== -->
+    <!-- PROBLEM: Before / After -->
+    <!-- ============================== -->
     <section id="problem" class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
-        <!-- Section header -->
         <div class="flex items-center gap-3 mb-10">
           <div class="section-number">02</div>
           <div class="w-12 h-px bg-[var(--lime)]"></div>
           <div class="section-label">Problem Space</div>
         </div>
 
-        <div class="grid lg:grid-cols-[1fr,1.2fr] gap-16 items-start">
-          <div>
-            <h2 class="heading-display text-4xl md:text-5xl lg:text-6xl mb-6">
-              You Wouldn't Hire<br/>
-              a Human Without<br/>
-              <span class="text-[var(--text-tertiary)]">Onboarding</span>
-            </h2>
-            <p class="text-[var(--text-secondary)] leading-relaxed text-lg">
-              When you bring on a new employee, there's a process: culture docs, tool access, compliance training. When you deploy an AI agent? Chaos.
-            </p>
+        <div class="max-w-3xl mb-16">
+          <h2 class="heading-display text-4xl md:text-5xl lg:text-6xl mb-6">
+            You Wouldn't Hire<br/>
+            a Human Without<br/>
+            <span class="text-[var(--text-tertiary)]">Onboarding</span>
+          </h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed text-lg">
+            When you bring on a new employee, there's a process. When you deploy an AI agent? Total chaos.
+          </p>
+        </div>
+
+        <!-- Before / After comparison -->
+        <div class="grid md:grid-cols-2 gap-px bg-[var(--border)] mb-16">
+          <!-- WITHOUT -->
+          <div class="bg-[var(--bg)] p-8 comparison-without relative">
+            <div class="flex items-center gap-2 mb-6">
+              <div class="w-2 h-2 bg-[var(--red)] rounded-full"></div>
+              <span class="mono text-xs font-bold text-[var(--red)] tracking-wider">WITHOUT ONBOARD</span>
+            </div>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <span class="text-[var(--red)] mono text-xs mt-1 shrink-0">--</span>
+                <div>
+                  <div class="font-bold text-sm mb-0.5">Ad-hoc credential sharing</div>
+                  <div class="text-xs text-[var(--text-secondary)]">Slack DMs, shared passwords, zero audit trails</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-[var(--red)] mono text-xs mt-1 shrink-0">--</span>
+                <div>
+                  <div class="font-bold text-sm mb-0.5">Weeks to production</div>
+                  <div class="text-xs text-[var(--text-secondary)]">Manual context loading, custom integrations</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-[var(--red)] mono text-xs mt-1 shrink-0">--</span>
+                <div>
+                  <div class="font-bold text-sm mb-0.5">Compliance blindspots</div>
+                  <div class="text-xs text-[var(--text-secondary)]">No policy enforcement, regulators will notice</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-[var(--red)] mono text-xs mt-1 shrink-0">--</span>
+                <div>
+                  <div class="font-bold text-sm mb-0.5">Doesn't scale</div>
+                  <div class="text-xs text-[var(--text-secondary)]">Agent #10 is just as painful as agent #1</div>
+                </div>
+              </li>
+            </ul>
           </div>
 
-          <!-- Pain Points -->
-          <div class="grid sm:grid-cols-2 gap-px bg-[var(--border)]">
-            <div class="bg-[var(--bg)] p-6 card-hover group">
-              <div class="flex items-center gap-2 mb-4">
-                <div class="w-1.5 h-1.5 bg-red-500"></div>
-                <span class="section-label text-red-400">Critical</span>
-              </div>
-              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--lime)] transition-colors">Security Nightmares</h3>
-              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Ad-hoc credential sharing, unclear permissions, zero audit trails.</p>
+          <!-- WITH -->
+          <div class="bg-[var(--bg)] p-8 comparison-with relative">
+            <div class="flex items-center gap-2 mb-6">
+              <div class="w-2 h-2 bg-[var(--lime)] rounded-full"></div>
+              <span class="mono text-xs font-bold text-[var(--lime)] tracking-wider">WITH ONBOARD</span>
             </div>
-
-            <div class="bg-[var(--bg)] p-6 card-hover group">
-              <div class="flex items-center gap-2 mb-4">
-                <div class="w-1.5 h-1.5 bg-orange-500"></div>
-                <span class="section-label text-orange-400">High</span>
-              </div>
-              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--lime)] transition-colors">Weeks to Production</h3>
-              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Manual context loading, custom integrations, endless config files.</p>
-            </div>
-
-            <div class="bg-[var(--bg)] p-6 card-hover group">
-              <div class="flex items-center gap-2 mb-4">
-                <div class="w-1.5 h-1.5 bg-yellow-500"></div>
-                <span class="section-label text-yellow-400">Warning</span>
-              </div>
-              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--lime)] transition-colors">Compliance Blindspots</h3>
-              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">No standardization, no policy enforcement. Regulators will notice.</p>
-            </div>
-
-            <div class="bg-[var(--bg)] p-6 card-hover group">
-              <div class="flex items-center gap-2 mb-4">
-                <div class="w-1.5 h-1.5 bg-purple-500"></div>
-                <span class="section-label text-purple-400">Systemic</span>
-              </div>
-              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--lime)] transition-colors">Doesn't Scale</h3>
-              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Onboarding agent #10 is just as painful as agent #1.</p>
-            </div>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <span class="text-[var(--lime)] mono text-xs mt-1 shrink-0">++</span>
+                <div>
+                  <div class="font-bold text-sm mb-0.5">Automated access management</div>
+                  <div class="text-xs text-[var(--text-secondary)]">Role-based permissions, secret rotation, full audit</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-[var(--lime)] mono text-xs mt-1 shrink-0">++</span>
+                <div>
+                  <div class="font-bold text-sm mb-0.5">Hours to production</div>
+                  <div class="text-xs text-[var(--text-secondary)]">Pre-loaded context, one-click integrations</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-[var(--lime)] mono text-xs mt-1 shrink-0">++</span>
+                <div>
+                  <div class="font-bold text-sm mb-0.5">SOC2-ready from day one</div>
+                  <div class="text-xs text-[var(--text-secondary)]">Built-in policy enforcement, audit trails</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-[var(--lime)] mono text-xs mt-1 shrink-0">++</span>
+                <div>
+                  <div class="font-bold text-sm mb-0.5">Deploy 100 agents like 1</div>
+                  <div class="text-xs text-[var(--text-secondary)]">Template-based onboarding, scales infinitely</div>
+                </div>
+              </li>
+            </ul>
           </div>
+        </div>
+
+        <!-- Mid-page CTA -->
+        <div class="text-center">
+          <a href="#contact" class="btn-ghost">
+            Fix this for your team
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Divider -->
     <div class="divider"></div>
 
-    <!-- Solution Section -->
+    <!-- ============================== -->
+    <!-- SOLUTION -->
+    <!-- ============================== -->
     <section id="solution" class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
-        <!-- Section header -->
         <div class="flex items-center gap-3 mb-10">
           <div class="section-number">03</div>
           <div class="w-12 h-px bg-[var(--lime)]"></div>
@@ -226,10 +317,11 @@ import ContactForm from '../components/ContactForm.astro';
       </div>
     </section>
 
-    <!-- Divider -->
     <div class="divider"></div>
 
-    <!-- How it Works -->
+    <!-- ============================== -->
+    <!-- HOW IT WORKS -->
+    <!-- ============================== -->
     <section class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
         <div class="flex items-center gap-3 mb-10">
@@ -245,7 +337,7 @@ import ContactForm from '../components/ContactForm.astro';
 
         <div class="grid md:grid-cols-3 gap-12">
           <div class="relative">
-            <div class="font-['JetBrains_Mono',monospace] text-6xl font-bold text-[var(--border)] mb-4">01</div>
+            <div class="mono text-6xl font-bold text-[var(--border)] mb-4">01</div>
             <h3 class="text-xl font-bold mb-3">Define</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               Upload your org's context: culture docs, tool access policies, compliance requirements, team structure.
@@ -254,7 +346,7 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
 
           <div class="relative">
-            <div class="font-['JetBrains_Mono',monospace] text-6xl font-bold text-[var(--border)] mb-4">02</div>
+            <div class="mono text-6xl font-bold text-[var(--border)] mb-4">02</div>
             <h3 class="text-xl font-bold mb-3">Configure</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               Set role-based permissions, connect integrations, define guardrails and escalation paths.
@@ -263,47 +355,126 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
 
           <div>
-            <div class="font-['JetBrains_Mono',monospace] text-6xl font-bold text-[var(--border)] mb-4">03</div>
+            <div class="mono text-6xl font-bold text-[var(--border)] mb-4">03</div>
             <h3 class="text-xl font-bold mb-3">Deploy</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               Launch agents with full context, proper access, and complete audit trails. Scale from 1 to 100.
             </p>
           </div>
         </div>
+
+        <!-- Mid-page CTA -->
+        <div class="text-center mt-16">
+          <a href="#contact" class="btn-primary">
+            Start Onboarding Agents
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Divider -->
     <div class="divider"></div>
 
-    <!-- Contact Section -->
+    <!-- ============================== -->
+    <!-- WHO IT'S FOR -->
+    <!-- ============================== -->
+    <section id="who" class="py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center gap-3 mb-10">
+          <div class="section-number">05</div>
+          <div class="w-12 h-px bg-[var(--lime)]"></div>
+          <div class="section-label">Target Profiles</div>
+        </div>
+
+        <div class="max-w-3xl mb-16">
+          <h2 class="heading-display text-4xl md:text-5xl lg:text-6xl mb-6">
+            Built for Teams<br/>
+            <span class="text-[var(--lime)]">Deploying AI at Scale</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="border border-[var(--border)] p-8 card-hover glow-ring group">
+            <div class="mono text-xs text-[var(--lime)] mb-4 tracking-wider">CTO / VP ENGINEERING</div>
+            <h3 class="text-lg font-bold mb-3 group-hover:text-[var(--lime)] transition-colors">"We have 15 agents but zero governance"</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              You need visibility, compliance, and standardized deployment before the board asks questions.
+            </p>
+          </div>
+
+          <div class="border border-[var(--border)] p-8 card-hover glow-ring group">
+            <div class="mono text-xs text-[var(--lime)] mb-4 tracking-wider">AI / ML ENGINEER</div>
+            <h3 class="text-lg font-bold mb-3 group-hover:text-[var(--lime)] transition-colors">"Each new agent takes 2 weeks to configure"</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              You're tired of writing the same integration code. You want templates, guardrails, and one-click deploys.
+            </p>
+          </div>
+
+          <div class="border border-[var(--border)] p-8 card-hover glow-ring group">
+            <div class="mono text-xs text-[var(--lime)] mb-4 tracking-wider">HEAD OF SECURITY</div>
+            <h3 class="text-lg font-bold mb-3 group-hover:text-[var(--lime)] transition-colors">"AI agents are our biggest blind spot"</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              You need audit trails, permission boundaries, and SOC2-ready logging for every agent interaction.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================== -->
+    <!-- CONTACT / FORM -->
+    <!-- ============================== -->
     <section id="contact" class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-[1fr,1.2fr] gap-16 items-start">
           <div>
+            <div class="flex items-center gap-3 mb-10">
+              <div class="section-number">06</div>
+              <div class="w-12 h-px bg-[var(--lime)]"></div>
+              <div class="section-label">Early Access</div>
+            </div>
+
             <h2 class="heading-display text-4xl md:text-5xl lg:text-6xl mb-6">
               Ready to Deploy<br/>
               Agents<br/>
               <span class="text-[var(--lime)]">The Right Way?</span>
             </h2>
             <p class="text-[var(--text-secondary)] text-lg leading-relaxed mb-8">
-              Join the waitlist for early access. Limited spots for pilot companies.
+              Pilot companies get hands-on setup support and influence the roadmap.
             </p>
 
-            <!-- Trust signals -->
-            <div class="space-y-3">
+            <div class="space-y-3 mb-8">
               <div class="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
                 <div class="w-1.5 h-1.5 bg-[var(--lime)]"></div>
-                No credit card required
+                Free during pilot period
               </div>
               <div class="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
                 <div class="w-1.5 h-1.5 bg-[var(--lime)]"></div>
-                Response within 48 hours
+                1-on-1 onboarding support
+              </div>
+              <div class="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
+                <div class="w-1.5 h-1.5 bg-[var(--lime)]"></div>
+                Shape the product with your feedback
               </div>
               <div class="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
                 <div class="w-1.5 h-1.5 bg-[var(--lime)]"></div>
                 SOC2 compliant infrastructure
               </div>
+            </div>
+
+            <!-- Urgency -->
+            <div class="border border-[var(--border)] p-4 bg-[var(--bg-elevated)]">
+              <div class="flex items-center gap-2 mb-1">
+                <div class="w-1.5 h-1.5 bg-[var(--red)] rounded-full animate-pulse"></div>
+                <span class="mono text-xs font-bold text-[var(--text-primary)]">LIMITED AVAILABILITY</span>
+              </div>
+              <p class="text-xs text-[var(--text-secondary)] mono">
+                We onboard 3 companies per cohort. Next cohort starts Q2 2026.
+              </p>
             </div>
           </div>
 
@@ -312,17 +483,19 @@ import ContactForm from '../components/ContactForm.astro';
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ============================== -->
+    <!-- FOOTER -->
+    <!-- ============================== -->
     <footer class="border-t border-[var(--border)] py-10 px-6">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div class="flex items-center gap-3">
             <div class="w-2 h-2 bg-[var(--lime)]"></div>
-            <span class="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-wider">ONBOARD</span>
+            <span class="mono text-sm font-bold tracking-wider">ONBOARD</span>
           </div>
 
           <div class="flex gap-8">
-            <a href="https://github.com/yourusername/onboard" class="section-label hover:text-[var(--text-primary)] transition-colors">GitHub</a>
+            <a href="https://github.com/arturo-lr-dev/onboard" class="section-label hover:text-[var(--text-primary)] transition-colors">GitHub</a>
             <a href="#" class="section-label hover:text-[var(--text-primary)] transition-colors">Docs</a>
             <a href="mailto:hello@onboard.ai" class="section-label hover:text-[var(--text-primary)] transition-colors">Contact</a>
           </div>
@@ -331,15 +504,27 @@ import ContactForm from '../components/ContactForm.astro';
         <div class="divider my-6"></div>
 
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <p class="text-xs text-[var(--text-tertiary)] font-['JetBrains_Mono',monospace]">
+          <p class="text-xs text-[var(--text-tertiary)] mono">
             &copy; 2026 Onboard. Built by ArturoClawd & Arturo.
           </p>
-          <p class="text-xs text-[var(--text-tertiary)] font-['JetBrains_Mono',monospace]">
+          <p class="text-xs text-[var(--text-tertiary)] mono">
             SYS.STATUS: <span class="text-[var(--lime)]">OPERATIONAL</span>
           </p>
         </div>
       </div>
     </footer>
+
+    <!-- ============================== -->
+    <!-- FLOATING CTA -->
+    <!-- ============================== -->
+    <div class="floating-cta" id="floating-cta">
+      <a href="#contact" class="btn-primary shadow-lg shadow-black/30">
+        Join Waitlist
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </a>
+    </div>
 
   </main>
 </Layout>
@@ -350,7 +535,7 @@ import ContactForm from '../components/ContactForm.astro';
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Hero stagger animation
+  // ---- Hero stagger ----
   const heroItems = document.querySelectorAll('.stagger-in > *');
   gsap.fromTo(heroItems,
     { opacity: 0, y: 30 },
@@ -358,13 +543,72 @@ import ContactForm from '../components/ContactForm.astro';
       opacity: 1,
       y: 0,
       duration: 0.8,
-      stagger: 0.12,
+      stagger: 0.1,
       ease: 'power3.out',
       clearProps: 'all'
     }
   );
 
-  // Scroll-triggered sections
+  // ---- Terminal animation ----
+  const terminalLines = [
+    { text: '$ onboard deploy --agent sales-copilot', color: 'var(--text-primary)', delay: 600 },
+    { text: '', delay: 200 },
+    { text: 'Loading context pack: acme-corp-v3.2...', color: 'var(--text-secondary)', delay: 400 },
+    { text: '  org_structure.yaml       [loaded]', color: 'var(--text-tertiary)', delay: 150 },
+    { text: '  culture_handbook.md      [loaded]', color: 'var(--text-tertiary)', delay: 150 },
+    { text: '  sales_playbook.md        [loaded]', color: 'var(--text-tertiary)', delay: 150 },
+    { text: '  compliance_policies.json [loaded]', color: 'var(--text-tertiary)', delay: 150 },
+    { text: '', delay: 200 },
+    { text: 'Provisioning access...', color: 'var(--text-secondary)', delay: 500 },
+    { text: '  Salesforce CRM        [role: read/write]', color: 'var(--text-tertiary)', delay: 200 },
+    { text: '  Slack #sales-team     [role: member]', color: 'var(--text-tertiary)', delay: 200 },
+    { text: '  HubSpot               [role: read-only]', color: 'var(--text-tertiary)', delay: 200 },
+    { text: '', delay: 200 },
+    { text: 'Running compliance checks...', color: 'var(--text-secondary)', delay: 600 },
+    { text: '  SOC2 policy      PASS', color: 'var(--green)', delay: 200, highlight: true },
+    { text: '  Data boundaries  PASS', color: 'var(--green)', delay: 200, highlight: true },
+    { text: '  Audit logging    PASS', color: 'var(--green)', delay: 200, highlight: true },
+    { text: '', delay: 300 },
+    { text: 'Agent "sales-copilot" deployed successfully.', color: 'var(--lime)', delay: 400, highlight: true },
+    { text: 'Time: 4m 32s  |  Status: LIVE', color: 'var(--lime)', delay: 200 },
+  ];
+
+  const terminalOutput = document.getElementById('terminal-output');
+  if (terminalOutput) {
+    let totalDelay = 800; // Initial delay after page load
+    terminalLines.forEach((line) => {
+      totalDelay += line.delay;
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'terminal-line';
+        el.style.color = line.color || 'var(--text-primary)';
+        if (line.highlight) {
+          el.style.fontWeight = '700';
+        }
+        el.textContent = line.text || '\u00A0';
+        terminalOutput.appendChild(el);
+        // Auto-scroll
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }, totalDelay);
+    });
+
+    // Add blinking cursor at the end
+    totalDelay += 400;
+    setTimeout(() => {
+      const cursor = document.createElement('span');
+      cursor.className = 'animate-blink';
+      cursor.textContent = '_';
+      cursor.style.color = 'var(--lime)';
+      const lastLine = document.createElement('div');
+      lastLine.className = 'terminal-line';
+      lastLine.textContent = '$ ';
+      lastLine.style.color = 'var(--text-primary)';
+      lastLine.appendChild(cursor);
+      terminalOutput.appendChild(lastLine);
+    }, totalDelay);
+  }
+
+  // ---- Scroll-triggered sections ----
   document.querySelectorAll('section:not(:first-of-type)').forEach((section) => {
     gsap.from(section.children, {
       opacity: 0,
@@ -380,7 +624,30 @@ import ContactForm from '../components/ContactForm.astro';
     });
   });
 
-  // Parallax on dot grid
+  // ---- Floating CTA (show after scrolling past hero) ----
+  const floatingCta = document.getElementById('floating-cta');
+  const contactSection = document.getElementById('contact');
+
+  if (floatingCta) {
+    ScrollTrigger.create({
+      trigger: '#problem',
+      start: 'top 80%',
+      onEnter: () => floatingCta.classList.add('visible'),
+      onLeaveBack: () => floatingCta.classList.remove('visible'),
+    });
+
+    // Hide when contact section is visible
+    if (contactSection) {
+      ScrollTrigger.create({
+        trigger: contactSection,
+        start: 'top 80%',
+        onEnter: () => floatingCta.classList.remove('visible'),
+        onLeaveBack: () => floatingCta.classList.add('visible'),
+      });
+    }
+  }
+
+  // ---- Parallax dot grid ----
   const dotGrid = document.querySelector('.dot-grid');
   if (dotGrid) {
     gsap.to(dotGrid, {
@@ -394,4 +661,32 @@ import ContactForm from '../components/ContactForm.astro';
       }
     });
   }
+
+  // ---- Hero email form ----
+  const heroForm = document.getElementById('hero-email') as HTMLFormElement;
+  heroForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = heroForm.querySelector('button') as HTMLButtonElement;
+    const input = heroForm.querySelector('input[type="email"]') as HTMLInputElement;
+    const originalHTML = btn.innerHTML;
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="animate-pulse mono text-xs">SENDING...</span>';
+
+    try {
+      const formData = new FormData(heroForm);
+      await fetch(heroForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      input.value = '';
+      btn.innerHTML = '<span class="mono text-xs">ADDED</span>';
+      setTimeout(() => { btn.innerHTML = originalHTML; btn.disabled = false; }, 3000);
+    } catch {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+    }
+  });
 </script>

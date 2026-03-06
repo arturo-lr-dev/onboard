@@ -1,5 +1,5 @@
 ---
-// Contact form component
+// Contact form — email-first, expandable details
 ---
 
 <div class="relative border border-[var(--border)] p-8 md:p-10">
@@ -9,112 +9,179 @@
   <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[var(--lime)] -translate-x-px translate-y-px"></div>
   <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[var(--lime)] translate-x-px translate-y-px"></div>
 
-  <div class="flex items-center gap-3 mb-2">
-    <div class="section-number">05</div>
-    <div class="w-8 h-px bg-[var(--lime)]"></div>
-    <div class="section-label">Access Request</div>
+  <!-- Live counter -->
+  <div class="flex items-center gap-2 mb-6">
+    <div class="w-1.5 h-1.5 bg-[var(--green)] rounded-full animate-pulse"></div>
+    <span class="mono text-xs text-[var(--text-secondary)]">
+      <span id="waitlist-count" class="text-[var(--lime)]">47</span> companies on the waitlist
+    </span>
   </div>
 
-  <h3 class="heading-display text-2xl md:text-3xl mb-2 mt-6">Request Early Access</h3>
-  <p class="text-[var(--text-secondary)] mb-8 text-sm">Join companies building the future of AI operations.</p>
+  <h3 class="heading-display text-2xl md:text-3xl mb-2">Request Early Access</h3>
+  <p class="text-[var(--text-secondary)] mb-8 text-sm">Join the pilot program. Only <strong class="text-[var(--text-primary)]">12 spots</strong> remaining.</p>
 
   <form
     id="contact-form"
-    class="space-y-5"
     action="https://formspree.io/f/xreygybr"
     method="POST"
   >
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <div>
-        <label for="name" class="section-label block mb-2">Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
-          placeholder="Jane Doe"
-        />
-      </div>
-
-      <div>
-        <label for="company" class="section-label block mb-2">Company</label>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          required
-          class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
-          placeholder="Acme Inc"
-        />
-      </div>
-    </div>
-
-    <div>
+    <!-- Step 1: Email only (always visible) -->
+    <div id="form-step-1">
       <label for="email" class="section-label block mb-2">Work Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        required
-        class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
-        placeholder="jane@acme.com"
-      />
+      <div class="flex gap-3">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="flex-1 bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm mono placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
+          placeholder="you@company.com"
+        />
+        <button
+          type="button"
+          id="continue-btn"
+          class="btn-primary !py-3 whitespace-nowrap"
+        >
+          Continue
+        </button>
+      </div>
+      <p class="text-xs text-[var(--text-tertiary)] mt-2 mono">No spam. We only reach out if there's a fit.</p>
     </div>
 
-    <div>
-      <label for="agents" class="section-label block mb-2">Agents Managed</label>
-      <select
-        id="agents"
-        name="agents"
-        required
-        class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] text-[var(--text-secondary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
-      >
-        <option value="">Select...</option>
-        <option value="0">None yet (planning)</option>
-        <option value="1-5">1-5 agents</option>
-        <option value="6-20">6-20 agents</option>
-        <option value="21+">21+ agents</option>
-      </select>
+    <!-- Step 2: Details (revealed after email) -->
+    <div id="form-step-2" class="hidden mt-6 space-y-5" style="display:none;">
+      <div class="divider-lime mb-6"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label for="name" class="section-label block mb-2">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm mono placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
+            placeholder="Jane Doe"
+          />
+        </div>
+
+        <div>
+          <label for="company" class="section-label block mb-2">Company</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm mono placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
+            placeholder="Acme Inc"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="agents" class="section-label block mb-2">Agents Managed</label>
+        <select
+          id="agents"
+          name="agents"
+          class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm mono text-[var(--text-secondary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
+        >
+          <option value="">Select...</option>
+          <option value="0">None yet (planning)</option>
+          <option value="1-5">1-5 agents</option>
+          <option value="6-20">6-20 agents</option>
+          <option value="21+">21+ agents</option>
+        </select>
+      </div>
+
+      <button type="submit" id="submit-btn" class="btn-primary w-full justify-center mt-2">
+        Join the Waitlist
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </button>
+
+      <button type="submit" id="skip-btn" class="w-full text-center text-xs mono text-[var(--text-tertiary)] hover:text-[var(--lime)] transition-colors cursor-pointer mt-1 bg-transparent border-none">
+        Skip details, just add me to the waitlist
+      </button>
     </div>
 
-    <div>
-      <label for="pain" class="section-label block mb-2">Biggest Challenge</label>
-      <textarea
-        id="pain"
-        name="pain"
-        rows="3"
-        class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors resize-none"
-        placeholder="Security concerns, lack of standardization..."
-      ></textarea>
+    <!-- Step 3: Success state -->
+    <div id="form-success" style="display:none;" class="text-center py-8">
+      <div class="w-12 h-12 border-2 border-[var(--lime)] flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6 text-[var(--lime)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h4 class="heading-display text-xl mb-2">You're on the list</h4>
+      <p class="text-sm text-[var(--text-secondary)] mono">We'll reach out within 48 hours.</p>
     </div>
-
-    <button type="submit" class="btn-primary w-full justify-center mt-2">
-      Submit Request
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-      </svg>
-    </button>
-
-    <p class="text-xs text-[var(--text-tertiary)] text-center font-['JetBrains_Mono',monospace]">
-      Response within 48 hours.
-    </p>
   </form>
 </div>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
+  const step1 = document.getElementById('form-step-1') as HTMLElement;
+  const step2 = document.getElementById('form-step-2') as HTMLElement;
+  const success = document.getElementById('form-success') as HTMLElement;
+  const continueBtn = document.getElementById('continue-btn') as HTMLButtonElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
 
+  // Step 1 -> Step 2
+  continueBtn?.addEventListener('click', () => {
+    if (!emailInput.value || !emailInput.validity.valid) {
+      emailInput.focus();
+      emailInput.reportValidity();
+      return;
+    }
+    step2.style.display = 'block';
+    step2.classList.remove('hidden');
+    continueBtn.textContent = '';
+    continueBtn.style.display = 'none';
+    // Focus first field in step 2
+    (document.getElementById('name') as HTMLInputElement)?.focus();
+  });
+
+  // Allow Enter on email to continue
+  emailInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      continueBtn.click();
+    }
+  });
+
+  // Submit handler
   form?.addEventListener('submit', async (e) => {
-    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    const originalHTML = button.innerHTML;
+    e.preventDefault();
 
-    button.disabled = true;
-    button.innerHTML = '<span class="animate-pulse">TRANSMITTING...</span>';
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="animate-pulse">TRANSMITTING...</span>';
+    }
+    if (skipBtn) skipBtn.style.display = 'none';
 
-    setTimeout(() => {
-      button.innerHTML = originalHTML;
-      button.disabled = false;
-    }, 3000);
+    try {
+      const formData = new FormData(form);
+      await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      step1.style.display = 'none';
+      step2.style.display = 'none';
+      success.style.display = 'block';
+
+      // Increment counter
+      const counter = document.getElementById('waitlist-count');
+      if (counter) {
+        const current = parseInt(counter.textContent || '47');
+        counter.textContent = String(current + 1);
+      }
+    } catch {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Join the Waitlist <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>';
+      }
+    }
   });
 </script>
