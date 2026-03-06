@@ -2,61 +2,73 @@
 // Contact form component
 ---
 
-<div class="relative bg-gradient-to-br from-[#00D9FF]/5 to-transparent border border-[#00D9FF]/20 rounded-2xl p-8 backdrop-blur">
-  <h3 class="text-2xl font-bold mb-2">Request Early Access</h3>
-  <p class="text-gray-400 mb-6">Join companies building the future of AI operations.</p>
-  
-  <form 
-    id="contact-form" 
-    class="space-y-4"
+<div class="relative border border-[var(--border)] p-8 md:p-10">
+  <!-- Corner accents -->
+  <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[var(--lime)] -translate-x-px -translate-y-px"></div>
+  <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[var(--lime)] translate-x-px -translate-y-px"></div>
+  <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[var(--lime)] -translate-x-px translate-y-px"></div>
+  <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[var(--lime)] translate-x-px translate-y-px"></div>
+
+  <div class="flex items-center gap-3 mb-2">
+    <div class="section-number">05</div>
+    <div class="w-8 h-px bg-[var(--lime)]"></div>
+    <div class="section-label">Access Request</div>
+  </div>
+
+  <h3 class="heading-display text-2xl md:text-3xl mb-2 mt-6">Request Early Access</h3>
+  <p class="text-[var(--text-secondary)] mb-8 text-sm">Join companies building the future of AI operations.</p>
+
+  <form
+    id="contact-form"
+    class="space-y-5"
     action="https://formspree.io/f/xreygybr"
     method="POST"
   >
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       <div>
-        <label for="name" class="block text-sm font-medium mb-2">Name</label>
-        <input 
-          type="text" 
-          id="name" 
+        <label for="name" class="section-label block mb-2">Name</label>
+        <input
+          type="text"
+          id="name"
           name="name"
           required
-          class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all"
+          class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
           placeholder="Jane Doe"
         />
       </div>
-      
+
       <div>
-        <label for="company" class="block text-sm font-medium mb-2">Company</label>
-        <input 
-          type="text" 
-          id="company" 
+        <label for="company" class="section-label block mb-2">Company</label>
+        <input
+          type="text"
+          id="company"
           name="company"
           required
-          class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all"
+          class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
           placeholder="Acme Inc"
         />
       </div>
     </div>
 
     <div>
-      <label for="email" class="block text-sm font-medium mb-2">Work Email</label>
-      <input 
-        type="email" 
-        id="email" 
+      <label for="email" class="section-label block mb-2">Work Email</label>
+      <input
+        type="email"
+        id="email"
         name="email"
         required
-        class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all"
+        class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
         placeholder="jane@acme.com"
       />
     </div>
 
     <div>
-      <label for="agents" class="block text-sm font-medium mb-2">How many AI agents do you currently manage?</label>
-      <select 
-        id="agents" 
+      <label for="agents" class="section-label block mb-2">Agents Managed</label>
+      <select
+        id="agents"
         name="agents"
         required
-        class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all"
+        class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] text-[var(--text-secondary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
       >
         <option value="">Select...</option>
         <option value="0">None yet (planning)</option>
@@ -67,44 +79,41 @@
     </div>
 
     <div>
-      <label for="pain" class="block text-sm font-medium mb-2">Biggest challenge with agent deployment?</label>
-      <textarea 
-        id="pain" 
+      <label for="pain" class="section-label block mb-2">Biggest Challenge</label>
+      <textarea
+        id="pain"
         name="pain"
         rows="3"
-        class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all resize-none"
-        placeholder="e.g., Security concerns, lack of standardization..."
+        class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm font-['JetBrains_Mono',monospace] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors resize-none"
+        placeholder="Security concerns, lack of standardization..."
       ></textarea>
     </div>
 
-    <button 
-      type="submit"
-      class="w-full bg-[#00D9FF] hover:bg-[#00C0E6] text-[#0A1128] font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98]"
-    >
+    <button type="submit" class="btn-primary w-full justify-center mt-2">
       Submit Request
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
     </button>
 
-    <p class="text-sm text-gray-500 text-center">
-      We'll reach out within 48 hours to discuss your needs.
+    <p class="text-xs text-[var(--text-tertiary)] text-center font-['JetBrains_Mono',monospace]">
+      Response within 48 hours.
     </p>
   </form>
 </div>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
-  
+
   form?.addEventListener('submit', async (e) => {
     const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    const originalText = button.textContent;
-    
+    const originalHTML = button.innerHTML;
+
     button.disabled = true;
-    button.textContent = 'Submitting...';
-    
-    // Formspree will handle the actual submission
-    // This is just for UX feedback
-    
+    button.innerHTML = '<span class="animate-pulse">TRANSMITTING...</span>';
+
     setTimeout(() => {
-      button.textContent = originalText;
+      button.innerHTML = originalHTML;
       button.disabled = false;
     }, 3000);
   });

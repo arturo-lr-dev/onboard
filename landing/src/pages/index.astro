@@ -5,195 +5,338 @@ import ContactForm from '../components/ContactForm.astro';
 
 <Layout title="Onboard - Enterprise AI Agent Onboarding">
   <main class="min-h-screen">
-    
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-2 h-2 bg-[var(--lime)] animate-pulse-glow"></div>
+          <span class="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-wider">ONBOARD</span>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#problem" class="section-label hover:text-[var(--text-primary)] transition-colors">Problem</a>
+          <a href="#solution" class="section-label hover:text-[var(--text-primary)] transition-colors">Solution</a>
+          <a href="#contact" class="section-label hover:text-[var(--text-primary)] transition-colors">Access</a>
+        </div>
+        <a href="#contact" class="btn-primary !py-2 !px-4 text-xs">
+          Get Access
+        </a>
+      </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="relative overflow-hidden py-20 px-6">
-      <!-- Background Elements -->
-      <div class="absolute inset-0 bg-gradient-to-br from-[#00D9FF]/10 via-transparent to-transparent pointer-events-none"></div>
-      <div class="absolute top-20 right-20 w-96 h-96 bg-[#00D9FF]/5 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div class="max-w-7xl mx-auto relative z-10">
-        <div class="max-w-4xl">
-          <!-- Badge -->
-          <div class="inline-flex items-center gap-2 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded-full px-4 py-2 mb-8">
-            <div class="w-2 h-2 bg-[#00D9FF] rounded-full animate-pulse"></div>
-            <span class="text-sm font-medium text-[#00D9FF]">Early Access Open</span>
+    <section class="relative pt-32 pb-20 px-6 min-h-screen flex items-center">
+      <!-- Background -->
+      <div class="absolute inset-0 dot-grid opacity-30 pointer-events-none"></div>
+      <div class="absolute top-1/4 -right-32 w-[500px] h-[500px] bg-[var(--lime)] rounded-full opacity-[0.02] blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto relative z-10 w-full">
+        <div class="stagger-in">
+          <!-- Meta line -->
+          <div class="flex items-center gap-3 mb-10">
+            <div class="section-number">01</div>
+            <div class="w-12 h-px bg-[var(--lime)]"></div>
+            <div class="section-label">System Overview</div>
           </div>
-          
+
           <!-- Headline -->
-          <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[0.95] tracking-tight">
+          <h1 class="heading-display text-[clamp(3rem,8vw,7.5rem)] mb-8 max-w-5xl">
             Enterprise-Grade<br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] to-[#00A8CC]">
-              Onboarding
-            </span><br/>
+            <span class="text-[var(--lime)]">Onboarding</span><br/>
             for AI Agents
           </h1>
-          
+
           <!-- Subhead -->
-          <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl leading-relaxed">
+          <p class="text-lg md:text-xl text-[var(--text-secondary)] mb-12 max-w-2xl leading-relaxed">
             Stop deploying agents blindly. Give them context, access, and compliance from day one.
           </p>
-          
-          <!-- Stats -->
-          <div class="flex flex-wrap gap-8 mb-12">
-            <div>
-              <div class="text-3xl font-bold text-[#00D9FF]">Hours</div>
-              <div class="text-sm text-gray-500">not weeks to production</div>
+
+          <!-- Divider -->
+          <div class="divider-lime max-w-2xl mb-12"></div>
+
+          <!-- Stats row -->
+          <div class="grid grid-cols-3 max-w-2xl gap-px">
+            <div class="pr-8">
+              <div class="font-['JetBrains_Mono',monospace] text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-1" data-counter="hours">Hours</div>
+              <div class="section-label">not weeks to prod</div>
             </div>
-            <div>
-              <div class="text-3xl font-bold text-[#00D9FF]">100%</div>
-              <div class="text-sm text-gray-500">compliant from day one</div>
+            <div class="px-8 border-l border-[var(--border)]">
+              <div class="font-['JetBrains_Mono',monospace] text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-1">100%</div>
+              <div class="section-label">compliant day one</div>
             </div>
-            <div>
-              <div class="text-3xl font-bold text-[#00D9FF]">Zero</div>
-              <div class="text-sm text-gray-500">security nightmares</div>
+            <div class="pl-8 border-l border-[var(--border)]">
+              <div class="font-['JetBrains_Mono',monospace] text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-1">Zero</div>
+              <div class="section-label">security incidents</div>
             </div>
           </div>
-          
+
           <!-- CTA -->
-          <a 
-            href="#contact" 
-            class="inline-block bg-[#00D9FF] hover:bg-[#00C0E6] text-[#0A1128] font-bold px-8 py-4 rounded-lg transition-all transform hover:scale-105 active:scale-95"
-          >
-            Request Early Access →
-          </a>
+          <div class="mt-14">
+            <a href="#contact" class="btn-primary">
+              Request Early Access
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <div class="section-label">Scroll</div>
+        <div class="w-px h-8 bg-gradient-to-b from-[var(--text-tertiary)] to-transparent"></div>
+      </div>
     </section>
+
+    <!-- Divider -->
+    <div class="divider"></div>
 
     <!-- Problem Section -->
-    <section class="py-20 px-6 bg-[#0F172A]">
+    <section id="problem" class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="max-w-3xl mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">
-            You Wouldn't Hire a Human<br/>
-            <span class="text-gray-400">Without Onboarding</span>
-          </h2>
-          <p class="text-xl text-gray-400 leading-relaxed">
-            When you bring on a new employee, there's a process: culture docs, tool access, compliance training, team introductions. When you deploy an AI agent? Chaos.
-          </p>
+        <!-- Section header -->
+        <div class="flex items-center gap-3 mb-10">
+          <div class="section-number">02</div>
+          <div class="w-12 h-px bg-[var(--lime)]"></div>
+          <div class="section-label">Problem Space</div>
         </div>
 
-        <!-- Pain Points Grid -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-gradient-to-br from-red-500/5 to-transparent border border-red-500/20 rounded-xl p-6">
-            <div class="text-4xl mb-4">🔓</div>
-            <h3 class="text-xl font-bold mb-2">Security Nightmares</h3>
-            <p class="text-gray-400">Ad-hoc credential sharing, unclear permissions, zero audit trails.</p>
+        <div class="grid lg:grid-cols-[1fr,1.2fr] gap-16 items-start">
+          <div>
+            <h2 class="heading-display text-4xl md:text-5xl lg:text-6xl mb-6">
+              You Wouldn't Hire<br/>
+              a Human Without<br/>
+              <span class="text-[var(--text-tertiary)]">Onboarding</span>
+            </h2>
+            <p class="text-[var(--text-secondary)] leading-relaxed text-lg">
+              When you bring on a new employee, there's a process: culture docs, tool access, compliance training. When you deploy an AI agent? Chaos.
+            </p>
           </div>
 
-          <div class="bg-gradient-to-br from-orange-500/5 to-transparent border border-orange-500/20 rounded-xl p-6">
-            <div class="text-4xl mb-4">⏱️</div>
-            <h3 class="text-xl font-bold mb-2">Weeks to Production</h3>
-            <p class="text-gray-400">Manual context loading, custom integrations, endless config files.</p>
-          </div>
+          <!-- Pain Points -->
+          <div class="grid sm:grid-cols-2 gap-px bg-[var(--border)]">
+            <div class="bg-[var(--bg)] p-6 card-hover group">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-1.5 h-1.5 bg-red-500"></div>
+                <span class="section-label text-red-400">Critical</span>
+              </div>
+              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--lime)] transition-colors">Security Nightmares</h3>
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Ad-hoc credential sharing, unclear permissions, zero audit trails.</p>
+            </div>
 
-          <div class="bg-gradient-to-br from-yellow-500/5 to-transparent border border-yellow-500/20 rounded-xl p-6">
-            <div class="text-4xl mb-4">⚠️</div>
-            <h3 class="text-xl font-bold mb-2">Compliance Blindspots</h3>
-            <p class="text-gray-400">No standardization, no policy enforcement, regulators will notice.</p>
-          </div>
+            <div class="bg-[var(--bg)] p-6 card-hover group">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-1.5 h-1.5 bg-orange-500"></div>
+                <span class="section-label text-orange-400">High</span>
+              </div>
+              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--lime)] transition-colors">Weeks to Production</h3>
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Manual context loading, custom integrations, endless config files.</p>
+            </div>
 
-          <div class="bg-gradient-to-br from-purple-500/5 to-transparent border border-purple-500/20 rounded-xl p-6">
-            <div class="text-4xl mb-4">🔄</div>
-            <h3 class="text-xl font-bold mb-2">Doesn't Scale</h3>
-            <p class="text-gray-400">Onboarding agent #10 is just as painful as agent #1.</p>
+            <div class="bg-[var(--bg)] p-6 card-hover group">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-1.5 h-1.5 bg-yellow-500"></div>
+                <span class="section-label text-yellow-400">Warning</span>
+              </div>
+              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--lime)] transition-colors">Compliance Blindspots</h3>
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">No standardization, no policy enforcement. Regulators will notice.</p>
+            </div>
+
+            <div class="bg-[var(--bg)] p-6 card-hover group">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-1.5 h-1.5 bg-purple-500"></div>
+                <span class="section-label text-purple-400">Systemic</span>
+              </div>
+              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--lime)] transition-colors">Doesn't Scale</h3>
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Onboarding agent #10 is just as painful as agent #1.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Divider -->
+    <div class="divider"></div>
+
     <!-- Solution Section -->
-    <section class="py-20 px-6">
+    <section id="solution" class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="max-w-3xl mx-auto text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        <!-- Section header -->
+        <div class="flex items-center gap-3 mb-10">
+          <div class="section-number">03</div>
+          <div class="w-12 h-px bg-[var(--lime)]"></div>
+          <div class="section-label">Solution Architecture</div>
+        </div>
+
+        <div class="max-w-3xl mb-16">
+          <h2 class="heading-display text-4xl md:text-5xl lg:text-6xl mb-6">
             The Infrastructure Layer<br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] to-[#00A8CC]">
-              AI Ops Has Been Missing
-            </span>
+            <span class="text-[var(--lime)]">AI Ops Has Been Missing</span>
           </h2>
-          <p class="text-xl text-gray-400">
+          <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
             Onboard makes deploying AI agents as structured and secure as hiring humans.
           </p>
         </div>
 
         <!-- Features -->
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="border border-gray-800 rounded-xl p-8 hover:border-[#00D9FF]/50 transition-all">
-            <div class="w-12 h-12 bg-[#00D9FF]/10 rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-6 h-6 text-[#00D9FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <div class="grid md:grid-cols-3 gap-px bg-[var(--border)]">
+          <div class="bg-[var(--bg)] p-8 card-hover group">
+            <div class="w-10 h-10 border border-[var(--border)] flex items-center justify-center mb-6 group-hover:border-[var(--lime)] transition-colors">
+              <svg class="w-5 h-5 text-[var(--lime)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-3">Context Loading</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Upload your org structure, processes, culture docs. Agents start with full company context from day one.
+            <div class="section-label mb-3">Module A</div>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-[var(--lime)] transition-colors">Context Loading</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Upload org structure, processes, culture docs. Agents start with full company context from day one.
             </p>
+            <div class="divider-lime mt-6 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </div>
 
-          <div class="border border-gray-800 rounded-xl p-8 hover:border-[#00D9FF]/50 transition-all">
-            <div class="w-12 h-12 bg-[#00D9FF]/10 rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-6 h-6 text-[#00D9FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          <div class="bg-[var(--bg)] p-8 card-hover group">
+            <div class="w-10 h-10 border border-[var(--border)] flex items-center justify-center mb-6 group-hover:border-[var(--lime)] transition-colors">
+              <svg class="w-5 h-5 text-[var(--lime)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-3">Access Management</h3>
-            <p class="text-gray-400 leading-relaxed">
+            <div class="section-label mb-3">Module B</div>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-[var(--lime)] transition-colors">Access Management</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               Role-based permissions, automated secret rotation, zero ad-hoc credential sharing. Security built-in.
             </p>
+            <div class="divider-lime mt-6 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </div>
 
-          <div class="border border-gray-800 rounded-xl p-8 hover:border-[#00D9FF]/50 transition-all">
-            <div class="w-12 h-12 bg-[#00D9FF]/10 rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-6 h-6 text-[#00D9FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <div class="bg-[var(--bg)] p-8 card-hover group">
+            <div class="w-10 h-10 border border-[var(--border)] flex items-center justify-center mb-6 group-hover:border-[var(--lime)] transition-colors">
+              <svg class="w-5 h-5 text-[var(--lime)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-3">Compliance Ready</h3>
-            <p class="text-gray-400 leading-relaxed">
+            <div class="section-label mb-3">Module C</div>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-[var(--lime)] transition-colors">Compliance Ready</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               Audit trails, policy enforcement, SOC2-ready logs. Regulators happy, security team happy.
+            </p>
+            <div class="divider-lime mt-6 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- How it Works -->
+    <section class="py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center gap-3 mb-10">
+          <div class="section-number">04</div>
+          <div class="w-12 h-px bg-[var(--lime)]"></div>
+          <div class="section-label">Process Flow</div>
+        </div>
+
+        <h2 class="heading-display text-4xl md:text-5xl mb-16">
+          Three Steps to<br/>
+          <span class="text-[var(--lime)]">Production-Ready</span>
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="relative">
+            <div class="font-['JetBrains_Mono',monospace] text-6xl font-bold text-[var(--border)] mb-4">01</div>
+            <h3 class="text-xl font-bold mb-3">Define</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Upload your org's context: culture docs, tool access policies, compliance requirements, team structure.
+            </p>
+            <div class="hidden md:block absolute top-8 -right-6 w-12 h-px bg-[var(--border)]"></div>
+          </div>
+
+          <div class="relative">
+            <div class="font-['JetBrains_Mono',monospace] text-6xl font-bold text-[var(--border)] mb-4">02</div>
+            <h3 class="text-xl font-bold mb-3">Configure</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Set role-based permissions, connect integrations, define guardrails and escalation paths.
+            </p>
+            <div class="hidden md:block absolute top-8 -right-6 w-12 h-px bg-[var(--border)]"></div>
+          </div>
+
+          <div>
+            <div class="font-['JetBrains_Mono',monospace] text-6xl font-bold text-[var(--border)] mb-4">03</div>
+            <h3 class="text-xl font-bold mb-3">Deploy</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Launch agents with full context, proper access, and complete audit trails. Scale from 1 to 100.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-[#0F172A]">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4">
-            Ready to Deploy Agents<br/>
-            <span class="text-[#00D9FF]">The Right Way?</span>
-          </h2>
-          <p class="text-xl text-gray-400">
-            Join the waitlist for early access. Limited spots available for pilot companies.
-          </p>
-        </div>
+    <!-- Divider -->
+    <div class="divider"></div>
 
-        <ContactForm />
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-[1fr,1.2fr] gap-16 items-start">
+          <div>
+            <h2 class="heading-display text-4xl md:text-5xl lg:text-6xl mb-6">
+              Ready to Deploy<br/>
+              Agents<br/>
+              <span class="text-[var(--lime)]">The Right Way?</span>
+            </h2>
+            <p class="text-[var(--text-secondary)] text-lg leading-relaxed mb-8">
+              Join the waitlist for early access. Limited spots for pilot companies.
+            </p>
+
+            <!-- Trust signals -->
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
+                <div class="w-1.5 h-1.5 bg-[var(--lime)]"></div>
+                No credit card required
+              </div>
+              <div class="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
+                <div class="w-1.5 h-1.5 bg-[var(--lime)]"></div>
+                Response within 48 hours
+              </div>
+              <div class="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
+                <div class="w-1.5 h-1.5 bg-[var(--lime)]"></div>
+                SOC2 compliant infrastructure
+              </div>
+            </div>
+          </div>
+
+          <ContactForm />
+        </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-gray-800">
+    <footer class="border-t border-[var(--border)] py-10 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
-            <div class="text-2xl font-bold mb-2">Onboard</div>
-            <p class="text-gray-500 text-sm">Enterprise-grade onboarding for AI agents.</p>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[var(--lime)]"></div>
+            <span class="font-['JetBrains_Mono',monospace] text-sm font-bold tracking-wider">ONBOARD</span>
           </div>
-          
-          <div class="flex gap-6 text-sm text-gray-500">
-            <a href="https://github.com/yourusername/onboard" class="hover:text-[#00D9FF] transition-colors">GitHub</a>
-            <a href="#" class="hover:text-[#00D9FF] transition-colors">Docs</a>
-            <a href="mailto:hello@onboard.ai" class="hover:text-[#00D9FF] transition-colors">Contact</a>
+
+          <div class="flex gap-8">
+            <a href="https://github.com/yourusername/onboard" class="section-label hover:text-[var(--text-primary)] transition-colors">GitHub</a>
+            <a href="#" class="section-label hover:text-[var(--text-primary)] transition-colors">Docs</a>
+            <a href="mailto:hello@onboard.ai" class="section-label hover:text-[var(--text-primary)] transition-colors">Contact</a>
           </div>
         </div>
-        
-        <div class="mt-8 pt-6 border-t border-gray-800 text-center text-sm text-gray-600">
-          © 2026 Onboard. Built by ArturoClawd & Arturo.
+
+        <div class="divider my-6"></div>
+
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <p class="text-xs text-[var(--text-tertiary)] font-['JetBrains_Mono',monospace]">
+            &copy; 2026 Onboard. Built by ArturoClawd & Arturo.
+          </p>
+          <p class="text-xs text-[var(--text-tertiary)] font-['JetBrains_Mono',monospace]">
+            SYS.STATUS: <span class="text-[var(--lime)]">OPERATIONAL</span>
+          </p>
         </div>
       </div>
     </footer>
@@ -207,29 +350,48 @@ import ContactForm from '../components/ContactForm.astro';
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animate hero on load
-  gsap.from('h1', {
-    opacity: 0,
-    y: 30,
-    duration: 1,
-    ease: 'power3.out'
+  // Hero stagger animation
+  const heroItems = document.querySelectorAll('.stagger-in > *');
+  gsap.fromTo(heroItems,
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: 'power3.out',
+      clearProps: 'all'
+    }
+  );
+
+  // Scroll-triggered sections
+  document.querySelectorAll('section:not(:first-of-type)').forEach((section) => {
+    gsap.from(section.children, {
+      opacity: 0,
+      y: 40,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 75%',
+        toggleActions: 'play none none none',
+      }
+    });
   });
 
-  // Animate sections on scroll
-  gsap.utils.toArray('section').forEach((section: any, i) => {
-    if (i > 0) { // Skip hero
-      gsap.from(section, {
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          end: 'top 50%',
-          scrub: 1,
-        }
-      });
-    }
-  });
+  // Parallax on dot grid
+  const dotGrid = document.querySelector('.dot-grid');
+  if (dotGrid) {
+    gsap.to(dotGrid, {
+      backgroundPosition: '12px 60px',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: dotGrid,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1,
+      }
+    });
+  }
 </script>
-</Layout>
