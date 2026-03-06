@@ -17,39 +17,85 @@ Onboard is a platform that standardizes and automates AI agent integration into 
 
 ---
 
-## Why Now?
+## Monorepo Structure
 
-Companies are deploying AI agents faster than they can manage them. The current approach is ad-hoc, insecure, and doesn't scale. Onboard provides the infrastructure layer that makes AI agents production-ready from day one.
-
----
-
-## Project Structure
+This project uses [Turborepo](https://turbo.build/) for monorepo management.
 
 ```
 onboard/
-├── landing/        # Marketing site (Astro + Tailwind)
-├── docs/           # Vision, research, roadmap
-├── branding/       # Brand guidelines and assets
-└── leads/          # Lead capture and management
+├── apps/
+│   └── landing/       # Marketing site (Astro + Tailwind + GSAP)
+├── packages/          # Shared packages (future)
+├── docs/              # Vision, research, roadmap
+├── branding/          # Brand guidelines and assets
+├── turbo.json         # Turborepo pipeline config
+└── package.json       # Root workspace config
 ```
 
 ---
 
 ## Getting Started
 
-### Landing Site
+### Prerequisites
+
+- Node.js 18+
+- npm 10+
+
+### Install
 
 ```bash
-cd landing
 npm install
+```
+
+### Development
+
+```bash
+# Run all apps in dev mode
 npm run dev
+
+# Run only the landing site
+npx turbo dev --filter=onboard-landing
 ```
 
 Visit `http://localhost:4321`
 
-### Deploy
+### Build
 
-Landing site is auto-deployed via Vercel/Netlify on push to `main`.
+```bash
+# Build all apps
+npm run build
+
+# Build only landing
+npx turbo build --filter=onboard-landing
+```
+
+---
+
+## Apps
+
+### `apps/landing`
+
+Marketing site built with Astro, Tailwind CSS v4, and GSAP. Deployed via Vercel on push to `master`.
+
+---
+
+## Adding a New App
+
+```bash
+mkdir apps/my-app
+cd apps/my-app
+npm init -y
+```
+
+The workspace is configured to auto-detect anything in `apps/*` and `packages/*`.
+
+---
+
+## Deploy
+
+The landing site is auto-deployed via Vercel. Root directory is set to `apps/landing`.
+
+> **Note:** After migrating to the monorepo, update the Vercel project root directory from `landing` to `apps/landing`.
 
 ---
 
@@ -57,17 +103,17 @@ Landing site is auto-deployed via Vercel/Netlify on push to `main`.
 
 We're building the standard for AI agent enterprise integration. Starting with a landing page to validate demand, then building the MVP with early design partners.
 
-**Current Stage:** Lead validation  
+**Current Stage:** Lead validation
 **Next:** MVP with 3-5 pilot companies
 
 ---
 
 ## Contact
 
-- **Website:** [Coming soon]
-- **Email:** hello@onboard.ai (to be set up)
+- **Website:** [onboard.ai](https://onboard.ai)
+- **Email:** hello@onboard.ai
 - **GitHub:** This repo
 
 ---
 
-**Built with 🔥 by ArturoClawd & Arturo**
+**Built by ArturoClawd & Arturo**

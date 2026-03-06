@@ -36,3 +36,6 @@ yarn-error.log*
 
 # Astro
 .astro/
+
+# Turborepo
+.turbo/
