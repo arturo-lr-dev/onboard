@@ -1,0 +1,111 @@
+---
+// Contact form component
+---
+
+<div class="relative bg-gradient-to-br from-[#00D9FF]/5 to-transparent border border-[#00D9FF]/20 rounded-2xl p-8 backdrop-blur">
+  <h3 class="text-2xl font-bold mb-2">Request Early Access</h3>
+  <p class="text-gray-400 mb-6">Join companies building the future of AI operations.</p>
+  
+  <form 
+    id="contact-form" 
+    class="space-y-4"
+    action="https://formspree.io/f/YOUR_FORM_ID"
+    method="POST"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="name" class="block text-sm font-medium mb-2">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name"
+          required
+          class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all"
+          placeholder="Jane Doe"
+        />
+      </div>
+      
+      <div>
+        <label for="company" class="block text-sm font-medium mb-2">Company</label>
+        <input 
+          type="text" 
+          id="company" 
+          name="company"
+          required
+          class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all"
+          placeholder="Acme Inc"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label for="email" class="block text-sm font-medium mb-2">Work Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email"
+        required
+        class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all"
+        placeholder="jane@acme.com"
+      />
+    </div>
+
+    <div>
+      <label for="agents" class="block text-sm font-medium mb-2">How many AI agents do you currently manage?</label>
+      <select 
+        id="agents" 
+        name="agents"
+        required
+        class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all"
+      >
+        <option value="">Select...</option>
+        <option value="0">None yet (planning)</option>
+        <option value="1-5">1-5 agents</option>
+        <option value="6-20">6-20 agents</option>
+        <option value="21+">21+ agents</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="pain" class="block text-sm font-medium mb-2">Biggest challenge with agent deployment?</label>
+      <textarea 
+        id="pain" 
+        name="pain"
+        rows="3"
+        class="w-full bg-[#1E293B] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#00D9FF] transition-all resize-none"
+        placeholder="e.g., Security concerns, lack of standardization..."
+      ></textarea>
+    </div>
+
+    <button 
+      type="submit"
+      class="w-full bg-[#00D9FF] hover:bg-[#00C0E6] text-[#0A1128] font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+    >
+      Submit Request
+    </button>
+
+    <p class="text-sm text-gray-500 text-center">
+      We'll reach out within 48 hours to discuss your needs.
+    </p>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  
+  form?.addEventListener('submit', async (e) => {
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = button.textContent;
+    
+    button.disabled = true;
+    button.textContent = 'Submitting...';
+    
+    // Formspree will handle the actual submission
+    // This is just for UX feedback
+    
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.disabled = false;
+    }, 3000);
+  });
+</script>
