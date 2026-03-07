@@ -22,8 +22,7 @@
 - Mercado validado: Existe demanda (competidores exitosos)
 
 ✅ **Fase 3: Landing creada**
-- URL temporal: https://landing-rho-azure-47.vercel.app
-- **Nuevo dominio:** ianding.es (pendiente conectar)
+- **Dominio:** https://ianding.es/
 - Stack: Astro + Tailwind
 - Formspree: Configurado para captura de emails
 
@@ -67,25 +66,25 @@
 #### A. Configurar Dominio (30 min)
 
 **Tareas:**
-1. [ ] Ir a Vercel dashboard del proyecto Onboard
-2. [ ] Settings → Domains → Add ianding.es
-3. [ ] Copiar registros DNS (A/CNAME) que Vercel indique
-4. [ ] Configurar DNS en el panel del registrador de ianding.es
-5. [ ] Esperar propagación (15-60 min)
-6. [ ] Verificar que HTTPS funcione automáticamente
+1. [x] Ir a Vercel dashboard del proyecto Onboard
+2. [x] Settings → Domains → Add ianding.es
+3. [x] Copiar registros DNS (A/CNAME) que Vercel indique
+4. [x] Configurar DNS en el panel del registrador de ianding.es
+5. [x] Esperar propagación (15-60 min)
+6. [x] Verificar que HTTPS funcione automáticamente
 7. [ ] Actualizar todos los links/menciones a la landing con el nuevo dominio
 
 #### B. Plan de Tráfico (100-200€, 7 días)
 
 **Estrategia Multi-Canal:**
 
-**1. Product Hunt (Día 1) — GRATIS, alta calidad**
-- [ ] Crear "upcoming" en Product Hunt
+**1. Product Hunt (Lunes 10 marzo) — GRATIS, alta calidad**
+- [x] Crear "upcoming" en Product Hunt
 - [ ] Preparar copy para el launch:
   - Tagline: "Simple onboarding for early-stage SaaS"
   - Descripción: Problema + solución + CTA
   - Maker comment: Historia honesta de validación
-- [ ] Programar launch para un martes/miércoles (mejores días)
+- [x] Programar launch para lunes 10 de marzo
 - [ ] Pedir a 3-5 contactos que hagan upvote temprano (momentum)
 - **Tráfico esperado:** 200-500 visitas
 
@@ -213,9 +212,9 @@
 - [x] Configurar GA4 + eventos (G-4WZ2L1ZNMN)
 - [x] Instalar Microsoft Clarity (vryvc4518o)
 - [x] Configurar UTM parameters (persistencia en sessionStorage)
-- [ ] Conectar ianding.es a Vercel
+- [x] Conectar ianding.es a Vercel
 - [ ] Verificar que Formspree funciona
-- [ ] Preparar copy para Product Hunt
+- [x] Crear Product Hunt upcoming (launch: lunes 10 marzo)
 - [ ] Preparar ads de Google
 
 ### Launch Week (Día 1-7)
@@ -257,6 +256,4 @@
 
 ---
 
-**Empezamos con Fase 4 (tracking) → 1-2 horas de trabajo.**
-
-¿Listo para configurar GA4 y Clarity? 🚀
+**Launch programado: lunes 10 de marzo en Product Hunt.**
