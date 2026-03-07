@@ -1,24 +1,33 @@
 ---
+import { languages, getLocalizedPath, defaultLang } from '../i18n';
+import type { Lang } from '../i18n';
+
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  lang?: Lang;
 }
 
-const defaultDescription = "Enterprise-grade onboarding for AI agents. Give your agents context, access, and compliance from day one.";
-const { title, description = defaultDescription, image = "/og-image.png" } = Astro.props;
+const { lang = defaultLang, title, description = '', image = "/og-image.png" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- hreflang alternates -->
+    {Object.keys(languages).map(l => (
+      <link rel="alternate" hreflang={l} href={new URL(getLocalizedPath(l as Lang, '/'), Astro.site)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -42,7 +51,7 @@ const ogImageURL = new URL(image, Astro.site);
           "@type": "Organization",
           "name": "Onboard",
           "url": Astro.site?.toString(),
-          "description": defaultDescription
+          "description": description
         },
         {
           "@type": "WebSite",

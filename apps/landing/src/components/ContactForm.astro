@@ -1,5 +1,13 @@
 ---
-// Contact form — email-first, expandable details
+import { useTranslations, defaultLang } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <div class="relative border border-[var(--border)] p-8 md:p-10">
@@ -9,25 +17,19 @@
   <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[var(--lime)] -translate-x-px translate-y-px"></div>
   <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[var(--lime)] translate-x-px translate-y-px"></div>
 
-  <!-- Live counter -->
-  <div class="flex items-center gap-2 mb-6">
-    <div class="w-1.5 h-1.5 bg-[var(--green)] rounded-full animate-pulse"></div>
-    <span class="mono text-xs text-[var(--text-secondary)]">
-      <span id="waitlist-count" class="text-[var(--lime)]">47</span> companies on the waitlist
-    </span>
-  </div>
-
-  <h3 class="heading-display text-2xl md:text-3xl mb-2">Request Early Access</h3>
-  <p class="text-[var(--text-secondary)] mb-8 text-sm">Join the pilot program. Only <strong class="text-[var(--text-primary)]">12 spots</strong> remaining.</p>
+  <h3 class="heading-display text-2xl md:text-3xl mb-2">{t.contactForm.requestAccess}</h3>
+  <p class="text-[var(--text-secondary)] mb-8 text-sm">{t.contactForm.spotsDesc}</p>
 
   <form
     id="contact-form"
     action="https://formspree.io/f/xreygybr"
     method="POST"
+    data-transmitting={t.contactForm.transmitting}
+    data-join-waitlist={t.contactForm.joinWaitlist}
   >
     <!-- Step 1: Email only (always visible) -->
     <div id="form-step-1">
-      <label for="email" class="section-label block mb-2">Work Email</label>
+      <label for="email" class="section-label block mb-2">{t.contactForm.workEmail}</label>
       <div class="flex gap-3">
         <input
           type="email"
@@ -35,17 +37,17 @@
           name="email"
           required
           class="flex-1 bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm mono placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
-          placeholder="you@company.com"
+          placeholder={t.hero.emailPlaceholder}
         />
         <button
           type="button"
           id="continue-btn"
           class="btn-primary !py-3 whitespace-nowrap"
         >
-          Continue
+          {t.contactForm.continue}
         </button>
       </div>
-      <p class="text-xs text-[var(--text-tertiary)] mt-2 mono">No spam. We only reach out if there's a fit.</p>
+      <p class="text-xs text-[var(--text-tertiary)] mt-2 mono">{t.contactForm.noSpam}</p>
     </div>
 
     <!-- Step 2: Details (revealed after email) -->
@@ -54,52 +56,52 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
-          <label for="name" class="section-label block mb-2">Name</label>
+          <label for="name" class="section-label block mb-2">{t.contactForm.nameLabel}</label>
           <input
             type="text"
             id="name"
             name="name"
             class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm mono placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
-            placeholder="Jane Doe"
+            placeholder={t.contactForm.namePlaceholder}
           />
         </div>
 
         <div>
-          <label for="company" class="section-label block mb-2">Company</label>
+          <label for="company" class="section-label block mb-2">{t.contactForm.companyLabel}</label>
           <input
             type="text"
             id="company"
             name="company"
             class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm mono placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
-            placeholder="Acme Inc"
+            placeholder={t.contactForm.companyPlaceholder}
           />
         </div>
       </div>
 
       <div>
-        <label for="agents" class="section-label block mb-2">Agents Managed</label>
+        <label for="agents" class="section-label block mb-2">{t.contactForm.agentsLabel}</label>
         <select
           id="agents"
           name="agents"
           class="w-full bg-[var(--bg)] border border-[var(--border)] px-4 py-3 text-sm mono text-[var(--text-secondary)] focus:outline-none focus:border-[var(--lime)] transition-colors"
         >
-          <option value="">Select...</option>
-          <option value="0">None yet (planning)</option>
-          <option value="1-5">1-5 agents</option>
-          <option value="6-20">6-20 agents</option>
-          <option value="21+">21+ agents</option>
+          <option value="">{t.contactForm.agentsSelect}</option>
+          <option value="0">{t.contactForm.agentsNone}</option>
+          <option value="1-5">{t.contactForm.agents1to5}</option>
+          <option value="6-20">{t.contactForm.agents6to20}</option>
+          <option value="21+">{t.contactForm.agents21plus}</option>
         </select>
       </div>
 
       <button type="submit" id="submit-btn" class="btn-primary w-full justify-center mt-2">
-        Join the Waitlist
+        {t.contactForm.joinWaitlist}
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </button>
 
       <button type="submit" id="skip-btn" class="w-full text-center text-xs mono text-[var(--text-tertiary)] hover:text-[var(--lime)] transition-colors cursor-pointer mt-1 bg-transparent border-none">
-        Skip details, just add me to the waitlist
+        {t.contactForm.skipDetails}
       </button>
     </div>
 
@@ -110,8 +112,8 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <h4 class="heading-display text-xl mb-2">You're on the list</h4>
-      <p class="text-sm text-[var(--text-secondary)] mono">We'll reach out within 48 hours.</p>
+      <h4 class="heading-display text-xl mb-2">{t.contactForm.successTitle}</h4>
+      <p class="text-sm text-[var(--text-secondary)] mono">{t.contactForm.successDesc}</p>
     </div>
   </form>
 </div>
@@ -123,6 +125,9 @@
   const success = document.getElementById('form-success') as HTMLElement;
   const continueBtn = document.getElementById('continue-btn') as HTMLButtonElement;
   const emailInput = document.getElementById('email') as HTMLInputElement;
+
+  const transmittingText = form?.dataset.transmitting || 'TRANSMITTING...';
+  const joinWaitlistText = form?.dataset.joinWaitlist || 'Join the Waitlist';
 
   // Step 1 -> Step 2
   continueBtn?.addEventListener('click', () => {
@@ -155,7 +160,7 @@
     const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement;
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="animate-pulse">TRANSMITTING...</span>';
+      submitBtn.innerHTML = `<span class="animate-pulse">${transmittingText}</span>`;
     }
     if (skipBtn) skipBtn.style.display = 'none';
 
@@ -170,17 +175,10 @@
       step1.style.display = 'none';
       step2.style.display = 'none';
       success.style.display = 'block';
-
-      // Increment counter
-      const counter = document.getElementById('waitlist-count');
-      if (counter) {
-        const current = parseInt(counter.textContent || '47');
-        counter.textContent = String(current + 1);
-      }
     } catch {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Join the Waitlist <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>';
+        submitBtn.innerHTML = `${joinWaitlistText} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>`;
       }
     }
   });

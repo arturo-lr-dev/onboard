@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://onboard.ai/sitemap-index.xml
+Sitemap: https://ianding.es/sitemap-index.xml
