@@ -79,12 +79,13 @@
 **Estrategia Multi-Canal:**
 
 **1. Product Hunt (Lunes 10 marzo) — GRATIS, alta calidad**
-- [x] Crear "upcoming" en Product Hunt
-- [ ] Preparar copy para el launch:
-  - Tagline: "Enterprise onboarding for AI agents"
-  - Descripción: Problema (agentes sin estructura) + solución (contexto, acceso, cumplimiento) + CTA
-  - Maker comment: Historia honesta de validación
+- [x] Crear producto en Product Hunt (nombre: Onboard)
+- [x] Tagline: "Enterprise-Grade Onboarding for AI Agents"
+- [x] Descripción completa (problema + solución + CTA)
+- [x] Gallery: 5 screenshots de la landing (EN)
+- [x] Shoutouts y tags configurados
 - [x] Programar launch para lunes 10 de marzo
+- [ ] Preparar maker comment para el día del launch
 - [ ] Pedir a 3-5 contactos que hagan upvote temprano (momentum)
 - **Tráfico esperado:** 200-500 visitas
 
@@ -215,7 +216,7 @@
 - [x] Configurar UTM parameters (persistencia en sessionStorage)
 - [x] Conectar ianding.es a Vercel
 - [ ] Verificar que Formspree funciona
-- [x] Crear Product Hunt upcoming (launch: lunes 10 marzo)
+- [x] Product Hunt configurado (nombre, tagline, descripcion, gallery, shoutouts, tags)
 - [ ] Preparar Google Ads (keywords: ai agent deployment/governance)
 
 ### Launch Week (Día 1-7)

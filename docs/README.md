@@ -6,13 +6,14 @@ Documentación del proyecto Onboard.
 
 ```
 docs/
-  strategy/              # Visión, mercado y roadmap
-    vision.md            # Por qué existe Onboard
+  TODO.md                # Checklist accionable dia a dia (empieza aqui)
+  strategy/              # Vision, mercado y roadmap
+    vision.md            # Por que existe Onboard
     market-research.md   # TAM/SAM/SOM, competencia, pricing
     roadmap.md           # Fases de desarrollo (0-4)
-  validation/            # Validación de demanda (activo)
-    plan.md              # Plan completo: tracking, tráfico, métricas, decisión
-    utm-tracking.md      # URLs con UTMs por canal y verificación
+  validation/            # Validacion de demanda (activo)
+    plan.md              # Plan completo: tracking, trafico, metricas, decision
+    utm-tracking.md      # URLs con UTMs por canal y verificacion
 ```
 
 ## Estado actual
