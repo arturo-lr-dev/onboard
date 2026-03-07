@@ -172,6 +172,16 @@ const t = useTranslations(lang);
         headers: { 'Accept': 'application/json' }
       });
 
+      // GA4: track email submission
+      if (typeof gtag === 'function') {
+        gtag('event', 'email_submit', {
+          event_category: 'conversion',
+          utm_source: sessionStorage.getItem('utm_source') || '(direct)',
+          utm_medium: sessionStorage.getItem('utm_medium') || '(none)',
+          utm_campaign: sessionStorage.getItem('utm_campaign') || '(none)'
+        });
+      }
+
       step1.style.display = 'none';
       step2.style.display = 'none';
       success.style.display = 'block';

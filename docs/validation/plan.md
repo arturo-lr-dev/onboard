@@ -31,7 +31,7 @@
 
 ## Próximos Pasos (Fase 4-7)
 
-### Fase 4: Configurar Tracking (1-2 horas) 🔄 SIGUIENTE
+### Fase 4: Configurar Tracking (1-2 horas) ✅ COMPLETADO
 
 **Objetivos:**
 - Instalar Google Analytics 4 (o Plausible si prefieres privacidad)
@@ -40,28 +40,29 @@
 - Verificar que Formspree capture emails correctamente
 
 **Tareas:**
-1. [ ] Crear cuenta Google Analytics 4 para Onboard
-2. [ ] Añadir tracking code en `src/layouts/Layout.astro`
-3. [ ] Configurar eventos personalizados:
-   - `page_view` (automático)
-   - `cta_click` (clicks en "Get Early Access")
-   - `email_submit` (formulario completado)
-   - `pricing_view` (scroll hasta sección pricing)
-4. [ ] Instalar Microsoft Clarity (gratis, para heatmaps)
-5. [ ] Configurar UTM parameters para cada fuente de tráfico:
+1. [x] Crear cuenta Google Analytics 4 para Onboard (G-4WZ2L1ZNMN)
+2. [x] Añadir tracking code en `src/layouts/Layout.astro`
+3. [x] Configurar eventos personalizados:
+   - `page_view` (automático con GA4)
+   - `cta_click` (clicks en cualquier CTA hacia #contact)
+   - `email_submit` (formulario completado en ContactForm)
+   - `contact_view` / `problem_view` / `solution_view` / `who_view` (scroll con IntersectionObserver)
+4. [x] Instalar Microsoft Clarity (proyecto vryvc4518o)
+5. [x] Configurar UTM parameters — persistencia automática en sessionStorage:
    - `?utm_source=producthunt&utm_medium=organic&utm_campaign=launch`
    - `?utm_source=google&utm_medium=cpc&utm_campaign=validation`
    - `?utm_source=reddit&utm_medium=social&utm_campaign=validation`
 6. [ ] Test de tracking: visita con diferentes UTMs, verificar en GA4
+7. [ ] Marcar `email_submit` y `cta_click` como conversiones en GA4 Admin → Events
 
 **Entregables:**
-- Dashboard de GA4 configurado
-- Eventos de conversión activos
-- UTM tracking funcionando
+- ✅ Dashboard de GA4 configurado
+- ✅ Eventos de conversión activos (pendiente marcarlos como conversiones en GA4)
+- ✅ UTM tracking funcionando
 
 ---
 
-### Fase 5: Conectar ianding.es y Generar Tráfico (Día 1-7)
+### Fase 5: Conectar ianding.es y Generar Tráfico (Día 1-7) 🔄 SIGUIENTE
 
 #### A. Configurar Dominio (30 min)
 
@@ -209,9 +210,9 @@
 ## Checklist Rápido
 
 ### Pre-Launch (Día 0)
-- [ ] Configurar GA4 + eventos
-- [ ] Instalar Microsoft Clarity
-- [ ] Configurar UTM parameters
+- [x] Configurar GA4 + eventos (G-4WZ2L1ZNMN)
+- [x] Instalar Microsoft Clarity (vryvc4518o)
+- [x] Configurar UTM parameters (persistencia en sessionStorage)
 - [ ] Conectar ianding.es a Vercel
 - [ ] Verificar que Formspree funciona
 - [ ] Preparar copy para Product Hunt
