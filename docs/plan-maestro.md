@@ -231,67 +231,67 @@ CREATE INDEX idx_users_company ON users(company_id);
 ## Orden de Implementacion
 
 ### Step 1: Foundation (Dia 1-2)
-- [ ] Crear `packages/shared/` con tipos y constantes
+- [x] Crear `packages/shared/` con tipos y constantes
 - [ ] Crear proyecto Supabase (free tier)
 - [ ] Ejecutar migrations SQL para crear todas las tablas
-- [ ] Actualizar `turbo.json` (agregar `.next/**` a outputs)
+- [x] Actualizar `turbo.json` (agregar `.next/**` a outputs)
 
 ### Step 2: NestJS API Scaffold (Dia 2-4)
-- [ ] Scaffold `apps/api/` con NestJS CLI
-- [ ] Configurar Drizzle ORM con Supabase PostgreSQL
-- [ ] Modulo Auth: registro, login, JWT issuing/validation
-- [ ] `AuthGuard` global + decorators `@CurrentUser()` `@CurrentCompany()`
-- [ ] `CompaniesModule` basico
-- [ ] `AuditLogsModule` + `AuditLogInterceptor` global
-- [ ] CORS configurado para frontend
+- [x] Scaffold `apps/api/` con NestJS CLI
+- [x] Configurar Drizzle ORM con Supabase PostgreSQL
+- [x] Modulo Auth: registro, login, JWT issuing/validation
+- [x] `AuthGuard` global + decorators `@CurrentUser()` `@CurrentCompany()`
+- [x] `CompaniesModule` basico
+- [x] `AuditLogsModule` + `AuditLogInterceptor` global
+- [x] CORS configurado para frontend
 
 ### Step 3: Agents Module (Dia 4-6)
-- [ ] CRUD completo de agentes
-- [ ] `ConfigGeneratorService` - ensambla JSON config desde agent + knowledge base
-- [ ] Generacion de API keys (`onb_live_` + crypto.randomBytes)
-- [ ] State machine de status (draft -> configuring -> active -> paused -> archived)
+- [x] CRUD completo de agentes
+- [x] `ConfigGeneratorService` - ensambla JSON config desde agent + knowledge base
+- [x] Generacion de API keys (`onb_live_` + crypto.randomBytes)
+- [x] State machine de status (draft -> configuring -> active -> paused -> archived)
 
 ### Step 4: Knowledge Base Module (Dia 6-8)
-- [ ] `StorageService` wrapping Supabase Storage (bucket `knowledge-base`)
-- [ ] Upload, list, delete de documentos
-- [ ] Junction agent-document (attach/detach)
-- [ ] Validacion: solo PDF, MD, TXT; max 10MB
-- [ ] Metadata extraction basica (size, type, page count)
+- [x] `StorageService` wrapping Supabase Storage (bucket `knowledge-base`)
+- [x] Upload, list, delete de documentos
+- [x] Junction agent-document (attach/detach)
+- [x] Validacion: solo PDF, MD, TXT; max 10MB
+- [x] Metadata extraction basica (size, type, page count)
 
 ### Step 5: Next.js Frontend Scaffold (Dia 8-10)
-- [ ] Scaffold `apps/web/` con create-next-app (App Router, TS, Tailwind)
-- [ ] Instalar y configurar NextAuth.js v5 (credentials provider)
-- [ ] `middleware.ts` para proteccion de rutas
-- [ ] Custom auth pages (`/sign-in`, `/sign-up`) con branding Onboard
-- [ ] Dashboard layout: sidebar dark (#0A1128), header, nav items
-- [ ] Configurar shadcn/ui con palette Onboard
-- [ ] `api-client.ts` - fetch wrapper tipado con JWT automatico
+- [x] Scaffold `apps/web/` con create-next-app (App Router, TS, Tailwind)
+- [x] Instalar y configurar NextAuth.js v5 (credentials provider)
+- [x] `middleware.ts` para proteccion de rutas
+- [x] Custom auth pages (`/sign-in`, `/sign-up`) con branding Onboard
+- [x] Dashboard layout: sidebar dark (#0A1128), header, nav items
+- [x] Configurar shadcn/ui con palette Onboard
+- [x] `api-client.ts` - fetch wrapper tipado con JWT automatico
 
 ### Step 6: Dashboard Pages (Dia 10-14)
-- [ ] Dashboard overview (stats cards, actividad reciente, quick actions)
-- [ ] Agents list (data table con shadcn, status badges, search)
-- [ ] Agent create wizard (multi-step: role -> permissions -> KB -> prompt -> review)
-- [ ] Agent detail page (config viewer JSON, status controls, API key reveal)
-- [ ] Knowledge base (document cards/list, upload dropzone con drag-and-drop)
-- [ ] Audit logs (tabla filtrable con paginacion)
-- [ ] Settings (company name, info)
+- [x] Dashboard overview (stats cards, actividad reciente, quick actions)
+- [x] Agents list (data table con shadcn, status badges, search)
+- [x] Agent create wizard (multi-step: role -> permissions -> KB -> prompt -> review)
+- [x] Agent detail page (config viewer JSON, status controls, API key reveal)
+- [x] Knowledge base (document cards/list, upload dropzone con drag-and-drop)
+- [x] Audit logs (tabla filtrable con paginacion)
+- [x] Settings (company name, info)
 
 ### Step 7: Onboarding Flow (Dia 14-16)
-- [ ] Wizard post-signup en `/onboarding`
-- [ ] Step 1: Nombre de empresa
-- [ ] Step 2: Crear primer agente (seleccionar rol, nombre)
-- [ ] Step 3: Upload primer documento
-- [ ] Step 4: Generar config + pantalla de exito
-- [ ] Redirect a dashboard
+- [x] Wizard post-signup en `/onboarding`
+- [x] Step 1: Nombre de empresa
+- [x] Step 2: Crear primer agente (seleccionar rol, nombre)
+- [x] Step 3: Upload primer documento
+- [x] Step 4: Generar config + pantalla de exito
+- [x] Redirect a dashboard
 
 ### Step 8: Polish y Deploy (Dia 16-20)
-- [ ] Error handling (error boundaries, toast notifications)
-- [ ] Loading states (skeletons con shadcn)
-- [ ] Empty states (ilustraciones/mensajes cuando no hay datos)
+- [x] Error handling (error boundaries, toast notifications)
+- [x] Loading states (skeletons con shadcn)
+- [x] Empty states (ilustraciones/mensajes cuando no hay datos)
 - [ ] Responsive design pass
-- [ ] Render deploy: Dockerfile + render.yaml para NestJS
+- [x] Render deploy: Dockerfile + render.yaml para NestJS
 - [ ] Vercel deploy: Next.js (root: `apps/web`)
-- [ ] Environment variables en ambas plataformas
+- [x] Environment variables en ambas plataformas
 - [ ] Smoke test end-to-end completo
 
 ---
