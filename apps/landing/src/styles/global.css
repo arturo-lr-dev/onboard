@@ -285,4 +285,142 @@
   .stagger-in > *:nth-child(6) { animation-delay: 0.6s; }
   .stagger-in > *:nth-child(7) { animation-delay: 0.7s; }
   .stagger-in > *:nth-child(8) { animation-delay: 0.8s; }
+
+  /* ---- SVG Icon Animations ---- */
+
+  /* Orbit rotation for access management icon */
+  .icon-orbit {
+    animation: spin-slow 12s linear infinite;
+    transform-origin: 8px 10px;
+  }
+
+  .icon-orbit-dot {
+    animation: orbit-dot 4s ease-in-out infinite;
+    transform-origin: 8px 10px;
+  }
+
+  @keyframes spin-slow {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes orbit-dot {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.9; }
+  }
+
+  /* Shield pulse for compliance icon */
+  .icon-shield-pulse {
+    animation: shield-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes shield-pulse {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.04); }
+  }
+
+  .icon-shield-pulse {
+    transform-origin: 12px 12px;
+  }
+
+  /* Checkmark draw animation */
+  .icon-check-draw {
+    stroke-dasharray: 20;
+    stroke-dashoffset: 20;
+    animation: draw-check 1.5s ease forwards 0.5s;
+  }
+
+  @keyframes draw-check {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Upload arrow float */
+  .icon-upload-arrow {
+    animation: float-up 2s ease-in-out infinite;
+  }
+
+  @keyframes float-up {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(-2px); opacity: 1; }
+  }
+
+  /* Gear spin on hover */
+  .group:hover .icon-gear-spin {
+    animation: spin-slow 4s linear infinite;
+    transform-origin: 20px 20px;
+  }
+
+  /* Rocket flame flicker */
+  .icon-flame {
+    animation: flame-flicker 0.4s ease-in-out infinite alternate;
+  }
+
+  .icon-flame-inner {
+    animation: flame-flicker 0.3s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes flame-flicker {
+    0% { opacity: 0.3; transform: scaleY(1); }
+    100% { opacity: 0.7; transform: scaleY(1.15); }
+  }
+
+  .icon-flame, .icon-flame-inner {
+    transform-origin: 20px 26px;
+  }
+
+  /* Cursor blink for engineer icon */
+  .icon-cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* Scan line sweep for security icon */
+  .icon-scan-line {
+    animation: scan-sweep 3s ease-in-out infinite;
+  }
+
+  @keyframes scan-sweep {
+    0%, 100% { stroke-dashoffset: 0; }
+    50% { stroke-dashoffset: 12; }
+  }
+
+  /* Pulse dot (used in arch diagram and icons) */
+  .icon-pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* Architecture diagram progress bar */
+  .arch-progress {
+    animation: progress-fill 3s ease-in-out infinite;
+  }
+
+  @keyframes progress-fill {
+    0% { width: 20px; }
+    50% { width: 70px; }
+    100% { width: 20px; }
+  }
+
+  /* Architecture nodes fade in sequence */
+  .arch-node {
+    opacity: 0;
+    animation: arch-appear 0.6s ease forwards;
+  }
+
+  .arch-node-1 { animation-delay: 0.2s; }
+  .arch-node-2 { animation-delay: 0.5s; }
+  .arch-node-3 { animation-delay: 0.8s; }
+
+  .arch-connection {
+    opacity: 0;
+    animation: arch-appear 0.5s ease forwards;
+    animation-delay: 0.4s;
+  }
+
+  @keyframes arch-appear {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
