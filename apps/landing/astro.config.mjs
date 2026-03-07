@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-const site = process.env.SITE_URL || 'https://onboard.ai';
+const site = process.env.SITE_URL || 'https://ianding.es';
 
 // https://astro.build/config
 export default defineConfig({

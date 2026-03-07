@@ -72,7 +72,7 @@ import ContactForm from '../components/ContactForm.astro';
             </form>
 
             <p class="text-xs text-[var(--text-tertiary)] mono mb-8 sm:mb-10">
-              Free for pilot companies. <span class="text-[var(--lime)]">12 spots remaining.</span>
+              Free during early access.
             </p>
 
             <!-- Stats row -->
@@ -122,14 +122,13 @@ import ContactForm from '../components/ContactForm.astro';
     <!-- ============================== -->
     <div class="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-4 sm:py-5 px-4 sm:px-6">
       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 md:gap-10">
-        <span class="section-label text-[var(--text-tertiary)]">Teams from</span>
+        <span class="section-label text-[var(--text-tertiary)]">Built for</span>
         <div class="flex items-center gap-4 sm:gap-6 md:gap-12 opacity-40">
-          <span class="mono text-[10px] sm:text-sm font-bold tracking-wider">YC STARTUPS</span>
-          <span class="mono text-[10px] sm:text-sm font-bold tracking-wider">SERIES A+</span>
+          <span class="mono text-[10px] sm:text-sm font-bold tracking-wider">STARTUPS</span>
+          <span class="mono text-[10px] sm:text-sm font-bold tracking-wider">SCALE-UPS</span>
           <span class="mono text-[10px] sm:text-sm font-bold tracking-wider">ENTERPRISE</span>
-          <span class="mono text-[10px] sm:text-sm font-bold tracking-wider hidden sm:block">AI-FIRST COS</span>
+          <span class="mono text-[10px] sm:text-sm font-bold tracking-wider hidden sm:block">AI-FIRST TEAMS</span>
         </div>
-        <span class="section-label text-[var(--text-tertiary)]">are on the waitlist</span>
       </div>
     </div>
 
@@ -271,9 +270,19 @@ import ContactForm from '../components/ContactForm.astro';
         <!-- Features -->
         <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--border)]">
           <div class="bg-[var(--bg)] p-6 sm:p-8 card-hover group">
-            <div class="w-10 h-10 border border-[var(--border)] flex items-center justify-center mb-5 sm:mb-6 group-hover:border-[var(--lime)] transition-colors">
-              <svg class="w-5 h-5 text-[var(--lime)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <div class="w-12 h-12 border border-[var(--border)] flex items-center justify-center mb-5 sm:mb-6 group-hover:border-[var(--lime)] transition-colors relative">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <!-- Stacked documents -->
+                <rect x="6" y="2" width="12" height="16" rx="1.5" stroke="var(--lime)" stroke-width="1.2" class="icon-doc-back" opacity="0.3"/>
+                <rect x="4" y="4" width="12" height="16" rx="1.5" stroke="var(--lime)" stroke-width="1.2" class="icon-doc-mid" opacity="0.5"/>
+                <rect x="2" y="6" width="12" height="16" rx="1.5" stroke="var(--lime)" stroke-width="1.2" fill="var(--bg)"/>
+                <!-- Content lines -->
+                <line x1="5" y1="11" x2="11" y2="11" stroke="var(--lime)" stroke-width="1" opacity="0.6" class="icon-line-1"/>
+                <line x1="5" y1="14" x2="9" y2="14" stroke="var(--lime)" stroke-width="1" opacity="0.4" class="icon-line-2"/>
+                <line x1="5" y1="17" x2="10" y2="17" stroke="var(--lime)" stroke-width="1" opacity="0.2" class="icon-line-3"/>
+                <!-- Upload arrow -->
+                <path d="M18 14l-2-3-2 3" stroke="var(--lime)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="icon-upload-arrow"/>
+                <line x1="16" y1="11" x2="16" y2="19" stroke="var(--lime)" stroke-width="1.2" stroke-linecap="round" class="icon-upload-arrow"/>
               </svg>
             </div>
             <div class="section-label mb-2 sm:mb-3">Module A</div>
@@ -285,9 +294,16 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
 
           <div class="bg-[var(--bg)] p-6 sm:p-8 card-hover group">
-            <div class="w-10 h-10 border border-[var(--border)] flex items-center justify-center mb-5 sm:mb-6 group-hover:border-[var(--lime)] transition-colors">
-              <svg class="w-5 h-5 text-[var(--lime)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            <div class="w-12 h-12 border border-[var(--border)] flex items-center justify-center mb-5 sm:mb-6 group-hover:border-[var(--lime)] transition-colors relative">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <!-- Key body -->
+                <circle cx="8" cy="10" r="4" stroke="var(--lime)" stroke-width="1.2" fill="none" class="icon-key-ring"/>
+                <line x1="12" y1="10" x2="21" y2="10" stroke="var(--lime)" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="18" y1="10" x2="18" y2="13" stroke="var(--lime)" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="20" y1="10" x2="20" y2="13" stroke="var(--lime)" stroke-width="1.2" stroke-linecap="round"/>
+                <!-- Rotating orbit dots -->
+                <circle cx="8" cy="10" r="6.5" stroke="var(--lime)" stroke-width="0.5" opacity="0.15" stroke-dasharray="2 4" class="icon-orbit"/>
+                <circle cx="8" cy="3.5" r="1" fill="var(--lime)" opacity="0.5" class="icon-orbit-dot"/>
               </svg>
             </div>
             <div class="section-label mb-2 sm:mb-3">Module B</div>
@@ -299,9 +315,16 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
 
           <div class="bg-[var(--bg)] p-6 sm:p-8 card-hover group sm:col-span-2 md:col-span-1">
-            <div class="w-10 h-10 border border-[var(--border)] flex items-center justify-center mb-5 sm:mb-6 group-hover:border-[var(--lime)] transition-colors">
-              <svg class="w-5 h-5 text-[var(--lime)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            <div class="w-12 h-12 border border-[var(--border)] flex items-center justify-center mb-5 sm:mb-6 group-hover:border-[var(--lime)] transition-colors relative">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <!-- Shield outline -->
+                <path d="M12 2l8 4v6c0 5.25-3.4 9.74-8 11-4.6-1.26-8-5.75-8-11V6l8-4z" stroke="var(--lime)" stroke-width="1.2" fill="none"/>
+                <!-- Inner shield glow -->
+                <path d="M12 5l5.5 2.75v4.25c0 3.6-2.3 6.7-5.5 7.55-3.2-.85-5.5-3.95-5.5-7.55V7.75L12 5z" fill="var(--lime)" opacity="0.06"/>
+                <!-- Animated checkmark -->
+                <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="var(--lime)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-check-draw"/>
+                <!-- Pulse ring -->
+                <path d="M12 2l8 4v6c0 5.25-3.4 9.74-8 11-4.6-1.26-8-5.75-8-11V6l8-4z" stroke="var(--lime)" stroke-width="0.5" fill="none" opacity="0.2" class="icon-shield-pulse"/>
               </svg>
             </div>
             <div class="section-label mb-2 sm:mb-3">Module C</div>
@@ -314,6 +337,105 @@ import ContactForm from '../components/ContactForm.astro';
         </div>
       </div>
     </section>
+
+    <!-- Architecture Flow Diagram -->
+    <div class="section-reveal py-12 sm:py-20 px-4 sm:px-6 overflow-hidden">
+      <div class="max-w-5xl mx-auto">
+        <svg class="w-full" viewBox="0 0 900 180" fill="none" aria-hidden="true" id="arch-diagram">
+          <!-- Background grid lines -->
+          <line x1="0" y1="90" x2="900" y2="90" stroke="var(--border)" stroke-width="0.5" opacity="0.3"/>
+          <line x1="150" y1="0" x2="150" y2="180" stroke="var(--border)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="450" y1="0" x2="450" y2="180" stroke="var(--border)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="750" y1="0" x2="750" y2="180" stroke="var(--border)" stroke-width="0.5" opacity="0.15"/>
+
+          <!-- Node 1: AI Agent -->
+          <g class="arch-node arch-node-1">
+            <rect x="30" y="50" width="120" height="80" rx="4" stroke="var(--text-tertiary)" stroke-width="1" fill="var(--bg-elevated)"/>
+            <text x="90" y="80" text-anchor="middle" fill="var(--text-secondary)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.1em">AI AGENT</text>
+            <!-- Bot face -->
+            <circle cx="78" cy="105" r="2" fill="var(--text-tertiary)"/>
+            <circle cx="102" cy="105" r="2" fill="var(--text-tertiary)"/>
+            <path d="M82 115 a8 5 0 0 0 16 0" stroke="var(--text-tertiary)" stroke-width="1" fill="none"/>
+            <!-- Antenna -->
+            <line x1="90" y1="50" x2="90" y2="40" stroke="var(--text-tertiary)" stroke-width="1"/>
+            <circle cx="90" cy="38" r="2.5" stroke="var(--text-tertiary)" stroke-width="1" fill="none" class="icon-pulse-dot"/>
+          </g>
+
+          <!-- Connection 1→2 -->
+          <g class="arch-connection">
+            <line x1="150" y1="90" x2="290" y2="90" stroke="var(--border)" stroke-width="1" stroke-dasharray="6 4"/>
+            <!-- Animated data packets -->
+            <circle r="3" fill="var(--lime)" opacity="0.8" class="data-packet data-packet-1">
+              <animateMotion dur="2s" repeatCount="indefinite" path="M150,90 L290,90" begin="0s"/>
+            </circle>
+            <circle r="2" fill="var(--lime)" opacity="0.4" class="data-packet data-packet-2">
+              <animateMotion dur="2s" repeatCount="indefinite" path="M150,90 L290,90" begin="0.7s"/>
+            </circle>
+          </g>
+
+          <!-- Node 2: ONBOARD Platform (center, highlighted) -->
+          <g class="arch-node arch-node-2">
+            <!-- Glow background -->
+            <rect x="290" y="30" width="200" height="120" rx="4" fill="var(--lime)" opacity="0.03"/>
+            <rect x="290" y="30" width="200" height="120" rx="4" stroke="var(--lime)" stroke-width="1.5" fill="var(--bg)"/>
+            <!-- Header bar -->
+            <rect x="290" y="30" width="200" height="24" rx="4" fill="var(--lime)" opacity="0.08"/>
+            <rect x="290" y="50" width="200" height="4" fill="var(--bg)"/>
+            <text x="390" y="46" text-anchor="middle" fill="var(--lime)" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="0.15em">ONBOARD</text>
+            <!-- Three module blocks inside -->
+            <rect x="305" y="65" width="50" height="30" rx="2" stroke="var(--lime)" stroke-width="0.8" opacity="0.5" fill="var(--lime)" fill-opacity="0.05"/>
+            <text x="330" y="78" text-anchor="middle" fill="var(--lime)" font-family="JetBrains Mono, monospace" font-size="7" opacity="0.7">CTX</text>
+            <text x="330" y="88" text-anchor="middle" fill="var(--text-tertiary)" font-family="JetBrains Mono, monospace" font-size="6">context</text>
+
+            <rect x="365" y="65" width="50" height="30" rx="2" stroke="var(--lime)" stroke-width="0.8" opacity="0.5" fill="var(--lime)" fill-opacity="0.05"/>
+            <text x="390" y="78" text-anchor="middle" fill="var(--lime)" font-family="JetBrains Mono, monospace" font-size="7" opacity="0.7">ACL</text>
+            <text x="390" y="88" text-anchor="middle" fill="var(--text-tertiary)" font-family="JetBrains Mono, monospace" font-size="6">access</text>
+
+            <rect x="425" y="65" width="50" height="30" rx="2" stroke="var(--lime)" stroke-width="0.8" opacity="0.5" fill="var(--lime)" fill-opacity="0.05"/>
+            <text x="450" y="78" text-anchor="middle" fill="var(--lime)" font-family="JetBrains Mono, monospace" font-size="7" opacity="0.7">CMP</text>
+            <text x="450" y="88" text-anchor="middle" fill="var(--text-tertiary)" font-family="JetBrains Mono, monospace" font-size="6">comply</text>
+
+            <!-- Status bar -->
+            <rect x="305" y="105" width="165" height="16" rx="2" fill="var(--lime)" opacity="0.05"/>
+            <circle cx="314" cy="113" r="3" fill="var(--lime)" opacity="0.6" class="icon-pulse-dot"/>
+            <text x="324" y="116" fill="var(--lime)" font-family="JetBrains Mono, monospace" font-size="7" opacity="0.5">PROCESSING</text>
+            <!-- Progress bar -->
+            <rect x="385" y="110" width="80" height="5" rx="2" fill="var(--border)" opacity="0.3"/>
+            <rect x="385" y="110" width="55" height="5" rx="2" fill="var(--lime)" opacity="0.3" class="arch-progress"/>
+          </g>
+
+          <!-- Connection 2→3 -->
+          <g class="arch-connection">
+            <line x1="490" y1="90" x2="630" y2="90" stroke="var(--border)" stroke-width="1" stroke-dasharray="6 4"/>
+            <!-- Animated data packets -->
+            <circle r="3" fill="var(--lime)" opacity="0.8" class="data-packet">
+              <animateMotion dur="2s" repeatCount="indefinite" path="M490,90 L630,90" begin="1s"/>
+            </circle>
+            <circle r="2" fill="var(--lime)" opacity="0.4" class="data-packet">
+              <animateMotion dur="2s" repeatCount="indefinite" path="M490,90 L630,90" begin="1.5s"/>
+            </circle>
+          </g>
+
+          <!-- Node 3: Production -->
+          <g class="arch-node arch-node-3">
+            <rect x="630" y="50" width="140" height="80" rx="4" stroke="var(--lime)" stroke-width="1" fill="var(--bg-elevated)" opacity="0.9"/>
+            <text x="700" y="78" text-anchor="middle" fill="var(--lime)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.1em">PRODUCTION</text>
+            <!-- Status indicators -->
+            <circle cx="660" cy="100" r="3" fill="var(--green)" opacity="0.7" class="icon-pulse-dot"/>
+            <text x="670" y="103" fill="var(--text-secondary)" font-family="JetBrains Mono, monospace" font-size="7">LIVE</text>
+            <circle cx="660" cy="114" r="3" fill="var(--green)" opacity="0.5"/>
+            <text x="670" y="117" fill="var(--text-secondary)" font-family="JetBrains Mono, monospace" font-size="7">COMPLIANT</text>
+            <!-- Checkmark -->
+            <path d="M730 100l4 4 8-9" stroke="var(--lime)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+          </g>
+
+          <!-- Labels below -->
+          <text x="90" y="170" text-anchor="middle" fill="var(--text-tertiary)" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.1em">UNSTRUCTURED</text>
+          <text x="390" y="170" text-anchor="middle" fill="var(--lime)" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.1em" opacity="0.6">STRUCTURED</text>
+          <text x="700" y="170" text-anchor="middle" fill="var(--text-tertiary)" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.1em">DEPLOYED</text>
+        </svg>
+      </div>
+    </div>
 
     <div class="divider"></div>
 
@@ -335,25 +457,68 @@ import ContactForm from '../components/ContactForm.astro';
 
         <div class="grid sm:grid-cols-3 gap-8 sm:gap-12">
           <div class="relative">
-            <div class="mono text-5xl sm:text-6xl font-bold text-[var(--border)] mb-3 sm:mb-4">01</div>
+            <div class="flex items-end gap-4 mb-4 sm:mb-5">
+              <svg class="w-10 h-10 shrink-0" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <rect x="4" y="6" width="22" height="28" rx="2" stroke="var(--border)" stroke-width="1"/>
+                <rect x="8" y="10" width="22" height="28" rx="2" stroke="var(--lime)" stroke-width="1.2" fill="var(--bg)"/>
+                <line x1="13" y1="18" x2="25" y2="18" stroke="var(--lime)" stroke-width="1" opacity="0.5"/>
+                <line x1="13" y1="22" x2="22" y2="22" stroke="var(--lime)" stroke-width="1" opacity="0.35"/>
+                <line x1="13" y1="26" x2="20" y2="26" stroke="var(--lime)" stroke-width="1" opacity="0.2"/>
+                <path d="M15 30l3 3 5-6" stroke="var(--lime)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+              </svg>
+              <div class="mono text-5xl sm:text-6xl font-bold text-[var(--border)] leading-none">01</div>
+            </div>
             <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Define</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               Upload your org's context: culture docs, tool access policies, compliance requirements, team structure.
             </p>
-            <div class="hidden sm:block absolute top-8 -right-6 w-12 h-px bg-[var(--border)]"></div>
+            <!-- Connector arrow -->
+            <div class="hidden sm:flex absolute top-5 -right-6 items-center">
+              <div class="w-8 h-px bg-[var(--border)]"></div>
+              <svg class="w-3 h-3 text-[var(--lime)] -ml-0.5" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
 
           <div class="relative">
-            <div class="mono text-5xl sm:text-6xl font-bold text-[var(--border)] mb-3 sm:mb-4">02</div>
+            <div class="flex items-end gap-4 mb-4 sm:mb-5">
+              <svg class="w-10 h-10 shrink-0" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <!-- Gear outer -->
+                <path d="M20 8l2.5 1.5 3-.5 1.5 2.5 2.5 2-.5 3 1.5 2.5-1.5 2.5.5 3-2.5 1.5-2 2.5-3-.5-2.5 1.5-2.5-1.5-.5-3-2.5-1.5-2-2.5.5-3-1.5-2.5 1.5-2.5-.5-3 2.5-1.5 2-2.5 3 .5z" stroke="var(--lime)" stroke-width="1.2" fill="none" class="icon-gear-spin"/>
+                <circle cx="20" cy="20" r="4" stroke="var(--lime)" stroke-width="1.2" fill="var(--bg)"/>
+                <!-- Toggle switches -->
+                <rect x="17" y="18" width="6" height="2" rx="1" fill="var(--lime)" opacity="0.4"/>
+                <circle cx="22" cy="19" r="1.2" fill="var(--lime)" opacity="0.7"/>
+              </svg>
+              <div class="mono text-5xl sm:text-6xl font-bold text-[var(--border)] leading-none">02</div>
+            </div>
             <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Configure</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               Set role-based permissions, connect integrations, define guardrails and escalation paths.
             </p>
-            <div class="hidden sm:block absolute top-8 -right-6 w-12 h-px bg-[var(--border)]"></div>
+            <!-- Connector arrow -->
+            <div class="hidden sm:flex absolute top-5 -right-6 items-center">
+              <div class="w-8 h-px bg-[var(--border)]"></div>
+              <svg class="w-3 h-3 text-[var(--lime)] -ml-0.5" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
 
           <div>
-            <div class="mono text-5xl sm:text-6xl font-bold text-[var(--border)] mb-3 sm:mb-4">03</div>
+            <div class="flex items-end gap-4 mb-4 sm:mb-5">
+              <svg class="w-10 h-10 shrink-0" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <!-- Rocket body -->
+                <path d="M20 6c-4 6-5 14-5 18h10c0-4-1-12-5-18z" stroke="var(--lime)" stroke-width="1.2" fill="none"/>
+                <ellipse cx="20" cy="24" rx="5" ry="2" stroke="var(--lime)" stroke-width="1" fill="var(--bg)"/>
+                <!-- Fins -->
+                <path d="M15 22l-3 6h3" stroke="var(--lime)" stroke-width="1" opacity="0.6"/>
+                <path d="M25 22l3 6h-3" stroke="var(--lime)" stroke-width="1" opacity="0.6"/>
+                <!-- Window -->
+                <circle cx="20" cy="16" r="2" stroke="var(--lime)" stroke-width="1" fill="var(--lime)" opacity="0.15"/>
+                <!-- Flame -->
+                <path d="M18 26c1 4 1.5 6 2 8 .5-2 1-4 2-8" stroke="var(--lime)" stroke-width="1" opacity="0.5" class="icon-flame"/>
+                <path d="M19 26c.5 2.5.8 4 1 5 .2-1 .5-2.5 1-5" stroke="var(--lime)" stroke-width="1" opacity="0.3" class="icon-flame-inner"/>
+              </svg>
+              <div class="mono text-5xl sm:text-6xl font-bold text-[var(--border)] leading-none">03</div>
+            </div>
             <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Deploy</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               Launch agents with full context, proper access, and complete audit trails. Scale from 1 to 100.
@@ -394,7 +559,25 @@ import ContactForm from '../components/ContactForm.astro';
 
         <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           <div class="border border-[var(--border)] p-6 sm:p-8 card-hover glow-ring group">
-            <div class="mono text-[10px] sm:text-xs text-[var(--lime)] mb-3 sm:mb-4 tracking-wider">CTO / VP ENGINEERING</div>
+            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+              <svg class="w-8 h-8 shrink-0" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <!-- Org chart: hierarchy -->
+                <rect x="12" y="3" width="8" height="6" rx="1" stroke="var(--lime)" stroke-width="1" fill="var(--lime)" fill-opacity="0.1"/>
+                <line x1="16" y1="9" x2="16" y2="14" stroke="var(--lime)" stroke-width="0.8" opacity="0.5"/>
+                <line x1="6" y1="14" x2="26" y2="14" stroke="var(--lime)" stroke-width="0.8" opacity="0.5"/>
+                <line x1="6" y1="14" x2="6" y2="18" stroke="var(--lime)" stroke-width="0.8" opacity="0.5"/>
+                <line x1="16" y1="14" x2="16" y2="18" stroke="var(--lime)" stroke-width="0.8" opacity="0.5"/>
+                <line x1="26" y1="14" x2="26" y2="18" stroke="var(--lime)" stroke-width="0.8" opacity="0.5"/>
+                <rect x="2" y="18" width="8" height="5" rx="1" stroke="var(--lime)" stroke-width="0.8" opacity="0.6"/>
+                <rect x="12" y="18" width="8" height="5" rx="1" stroke="var(--lime)" stroke-width="0.8" opacity="0.6"/>
+                <rect x="22" y="18" width="8" height="5" rx="1" stroke="var(--lime)" stroke-width="0.8" opacity="0.6"/>
+                <!-- Dots in boxes -->
+                <circle cx="6" cy="20.5" r="1" fill="var(--lime)" opacity="0.4"/>
+                <circle cx="16" cy="20.5" r="1" fill="var(--lime)" opacity="0.4"/>
+                <circle cx="26" cy="20.5" r="1" fill="var(--lime)" opacity="0.4"/>
+              </svg>
+              <div class="mono text-[10px] sm:text-xs text-[var(--lime)] tracking-wider">CTO / VP ENGINEERING</div>
+            </div>
             <h3 class="text-base sm:text-lg font-bold mb-2 sm:mb-3 group-hover:text-[var(--lime)] transition-colors">"We have 15 agents but zero governance"</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               You need visibility, compliance, and standardized deployment before the board asks questions.
@@ -402,7 +585,26 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
 
           <div class="border border-[var(--border)] p-6 sm:p-8 card-hover glow-ring group">
-            <div class="mono text-[10px] sm:text-xs text-[var(--lime)] mb-3 sm:mb-4 tracking-wider">AI / ML ENGINEER</div>
+            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+              <svg class="w-8 h-8 shrink-0" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <!-- Terminal/code window -->
+                <rect x="2" y="4" width="28" height="24" rx="2" stroke="var(--lime)" stroke-width="1" fill="var(--lime)" fill-opacity="0.05"/>
+                <line x1="2" y1="9" x2="30" y2="9" stroke="var(--lime)" stroke-width="0.8" opacity="0.3"/>
+                <!-- Terminal dots -->
+                <circle cx="5.5" cy="6.5" r="1" fill="var(--lime)" opacity="0.5"/>
+                <circle cx="9" cy="6.5" r="1" fill="var(--lime)" opacity="0.3"/>
+                <circle cx="12.5" cy="6.5" r="1" fill="var(--lime)" opacity="0.2"/>
+                <!-- Code lines -->
+                <line x1="6" y1="13" x2="10" y2="13" stroke="var(--lime)" stroke-width="1" opacity="0.6"/>
+                <line x1="12" y1="13" x2="22" y2="13" stroke="var(--lime)" stroke-width="1" opacity="0.3"/>
+                <line x1="8" y1="17" x2="18" y2="17" stroke="var(--lime)" stroke-width="1" opacity="0.4"/>
+                <line x1="8" y1="21" x2="14" y2="21" stroke="var(--lime)" stroke-width="1" opacity="0.25"/>
+                <line x1="6" y1="25" x2="12" y2="25" stroke="var(--lime)" stroke-width="1" opacity="0.5"/>
+                <!-- Cursor blink -->
+                <rect x="14" y="24" width="1.5" height="3" fill="var(--lime)" opacity="0.7" class="icon-cursor-blink"/>
+              </svg>
+              <div class="mono text-[10px] sm:text-xs text-[var(--lime)] tracking-wider">AI / ML ENGINEER</div>
+            </div>
             <h3 class="text-base sm:text-lg font-bold mb-2 sm:mb-3 group-hover:text-[var(--lime)] transition-colors">"Each new agent takes 2 weeks to configure"</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               You're tired of writing the same integration code. You want templates, guardrails, and one-click deploys.
@@ -410,7 +612,20 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
 
           <div class="border border-[var(--border)] p-6 sm:p-8 card-hover glow-ring group sm:col-span-2 md:col-span-1">
-            <div class="mono text-[10px] sm:text-xs text-[var(--lime)] mb-3 sm:mb-4 tracking-wider">HEAD OF SECURITY</div>
+            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+              <svg class="w-8 h-8 shrink-0" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <!-- Shield with eye -->
+                <path d="M16 3l11 5.5v7.5c0 6.9-4.5 12.8-11 14.5C9.5 28.8 5 22.9 5 16v-7.5L16 3z" stroke="var(--lime)" stroke-width="1.2" fill="var(--lime)" fill-opacity="0.05"/>
+                <!-- Eye shape -->
+                <ellipse cx="16" cy="16" rx="6" ry="3.5" stroke="var(--lime)" stroke-width="1" opacity="0.7"/>
+                <circle cx="16" cy="16" r="2" stroke="var(--lime)" stroke-width="1" fill="var(--lime)" fill-opacity="0.2"/>
+                <circle cx="16" cy="16" r="0.8" fill="var(--lime)" opacity="0.6"/>
+                <!-- Scan lines -->
+                <line x1="10" y1="12" x2="22" y2="12" stroke="var(--lime)" stroke-width="0.5" opacity="0.15" stroke-dasharray="2 2" class="icon-scan-line"/>
+                <line x1="10" y1="20" x2="22" y2="20" stroke="var(--lime)" stroke-width="0.5" opacity="0.15" stroke-dasharray="2 2" class="icon-scan-line"/>
+              </svg>
+              <div class="mono text-[10px] sm:text-xs text-[var(--lime)] tracking-wider">HEAD OF SECURITY</div>
+            </div>
             <h3 class="text-base sm:text-lg font-bold mb-2 sm:mb-3 group-hover:text-[var(--lime)] transition-colors">"AI agents are our biggest blind spot"</h3>
             <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
               You need audit trails, permission boundaries, and SOC2-ready logging for every agent interaction.
@@ -470,7 +685,7 @@ import ContactForm from '../components/ContactForm.astro';
                 <span class="mono text-[10px] sm:text-xs font-bold text-[var(--text-primary)]">LIMITED AVAILABILITY</span>
               </div>
               <p class="text-[10px] sm:text-xs text-[var(--text-secondary)] mono">
-                We onboard 3 companies per cohort. Next cohort starts Q2 2026.
+                Limited spots per cohort. Apply to join the next one.
               </p>
             </div>
           </div>
