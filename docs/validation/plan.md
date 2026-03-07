@@ -1,6 +1,6 @@
 # Onboard - Plan de Validación
 
-**Objetivo:** Validar si hay demanda real para una plataforma de onboarding de productos SaaS antes de construir el producto completo.
+**Objetivo:** Validar si hay demanda real para una plataforma de onboarding empresarial de agentes IA antes de construir el producto completo.
 
 **Timeline:** 14 días
 **Presupuesto:** 100-200€ en ads
@@ -11,15 +11,15 @@
 ## Estado Actual
 
 ✅ **Fase 1: Idea cristalizada**
-- Problema: Equipos SaaS pierden usuarios en los primeros días por onboarding deficiente
-- Target: Fundadores/PMs de startups SaaS early-stage (5-50 usuarios/día)
-- Propuesta: Plataforma de onboarding interactivo sin código
-- Modelo: SaaS mensual (~$49-99/mes)
+- Problema: Empresas despliegan agentes IA sin estructura — sin contexto, sin permisos, sin trazabilidad
+- Target: CTOs, ingenieros AI/ML, responsables de seguridad en empresas que despliegan agentes IA
+- Propuesta: Plataforma de onboarding empresarial para agentes IA (contexto, acceso, cumplimiento)
+- Modelo: SaaS por agente (~$49-199/agente/mes)
 
 ✅ **Fase 2: Investigación de mercado**
-- Competidores: Appcues, Userflow, Chameleon (caros, >$200/mes)
-- Hueco: Solución más simple y barata para early-stage
-- Mercado validado: Existe demanda (competidores exitosos)
+- No hay competidor directo — el gap está entre frameworks de agentes (LangChain, CrewAI) y herramientas de identidad (Okta, Auth0)
+- Hueco: Capa de infraestructura para hacer agentes IA production-ready
+- Mercado validado: Empresas ya despliegan agentes pero sin proceso estandarizado
 
 ✅ **Fase 3: Landing creada**
 - **Dominio:** https://ianding.es/
@@ -81,8 +81,8 @@
 **1. Product Hunt (Lunes 10 marzo) — GRATIS, alta calidad**
 - [x] Crear "upcoming" en Product Hunt
 - [ ] Preparar copy para el launch:
-  - Tagline: "Simple onboarding for early-stage SaaS"
-  - Descripción: Problema + solución + CTA
+  - Tagline: "Enterprise onboarding for AI agents"
+  - Descripción: Problema (agentes sin estructura) + solución (contexto, acceso, cumplimiento) + CTA
   - Maker comment: Historia honesta de validación
 - [x] Programar launch para lunes 10 de marzo
 - [ ] Pedir a 3-5 contactos que hagan upvote temprano (momentum)
@@ -91,49 +91,50 @@
 **2. Google Ads (Día 1-7) — 50-100€**
 - [ ] Crear campaña de búsqueda
 - Keywords de intención alta:
-  - "user onboarding tool"
-  - "saas onboarding software"
-  - "appcues alternative"
-  - "userflow alternative"
-  - "onboarding platform for startups"
+  - "ai agent deployment"
+  - "ai agent management platform"
+  - "deploy ai agents enterprise"
+  - "ai agent governance"
+  - "ai agent onboarding"
 - Presupuesto: 10-15€/día durante 7 días
 - Copy de anuncios:
-  - Headline: "Simple Onboarding for Early SaaS | Try Free"
-  - Description: "No-code onboarding flows. From $49/mo. Built for founders."
+  - Headline: "AI Agent Onboarding Platform | Enterprise-Ready"
+  - Description: "Deploy agents with context, access & compliance. From $49/agent/mo."
 - Landing page: ianding.es?utm_source=google&utm_medium=cpc&utm_campaign=validation
 - **Tráfico esperado:** 150-300 visitas
 
 **3. Reddit (Día 2-3) — GRATIS**
 - [ ] Post en subreddits relevantes:
-  - r/SaaS: "I'm building a simpler onboarding tool for early-stage SaaS. What do you think?"
-  - r/startups: "Validating an idea: affordable onboarding platform. Feedback?"
-  - r/Entrepreneur: Post sobre el problema + solución
+  - r/artificial: "How are you managing AI agent deployments at scale?"
+  - r/MachineLearning: "Building an onboarding layer for AI agents — feedback?"
+  - r/startups: "Validating: enterprise onboarding infrastructure for AI agents"
+  - r/ClaudeAI, r/ChatGPTCoding: "Agent governance is a mess — building a fix"
 - [ ] Ser honesto: "Estoy validando esta idea, ¿os interesaría?"
 - [ ] Responder todos los comentarios genuinamente
 - **Tráfico esperado:** 50-150 visitas
 
 **4. LinkedIn (Día 2-4) — GRATIS**
 - [ ] Post personal en LinkedIn:
-  - Hook: "Most SaaS products lose 70% of users in the first week."
-  - Story: Por qué estás construyendo esto
-  - CTA: "I'm validating this idea → ianding.es"
-- [ ] Compartir en grupos relevantes de SaaS/startups
-- [ ] Enviar DMs personalizados a 10-15 fundadores SaaS de tu red
+  - Hook: "Desplegamos agentes IA como si fuera el salvaje oeste."
+  - Story: Sin permisos, sin contexto, sin trazabilidad — por qué estás construyendo Onboard
+  - CTA: "Validando la idea con acceso anticipado gratuito → ianding.es"
+- [ ] Compartir en grupos relevantes de AI/enterprise/startups
+- [ ] Enviar DMs personalizados a 10-15 CTOs/ingenieros AI de tu red
 - **Tráfico esperado:** 50-100 visitas
 
 **5. Twitter/X (Día 1-7) — GRATIS**
 - [ ] Thread sobre el problema:
-  1. "70% of SaaS users churn in the first week"
-  2. "Why? Poor onboarding."
-  3. "Existing tools cost $200+/mo"
-  4. "I'm building something simpler: ianding.es"
+  1. "Companies are deploying AI agents with zero onboarding infrastructure."
+  2. "No permissions. No context. No audit trail. Just vibes."
+  3. "You wouldn't hire a human without onboarding. Why deploy an agent without one?"
+  4. "Building the fix → ianding.es"
 - [ ] Mencionar @ProductHunt cuando lances ahí
 - [ ] Retwittear con updates de validación (transparencia)
 - **Tráfico esperado:** 30-80 visitas
 
 **6. Comunidades de Indie Hackers (Día 3-5) — GRATIS**
-- [ ] Post en Indie Hackers: "Validating: Affordable onboarding for SaaS"
-- [ ] Compartir en Discord/Slack de founders (MicroConf, SaaS communities)
+- [ ] Post en Indie Hackers: "Validating: Enterprise onboarding infrastructure for AI agents"
+- [ ] Compartir en Discord/Slack de AI/founders (AI communities, MicroConf)
 - **Tráfico esperado:** 20-50 visitas
 
 **Tráfico total esperado: 500-1,000+ visitas**
@@ -177,7 +178,7 @@
 **Siguiente paso si GO:**
 1. Enviar email a los 50+ leads: "Gracias por el interés. ¿Puedo hacerte 3 preguntas rápidas?"
 2. Hacer 10-15 entrevistas de 15 min (validar willingness-to-pay)
-3. Construir MVP ultra-mínimo: 1 flujo de onboarding básico
+3. Construir MVP ultra-mínimo: onboarding de 1 agente con contexto + permisos
 4. Invitar a los 10 más engaged a beta privada
 5. Cobrar desde día 1 (aunque sea $10/mes — valida WTP)
 
@@ -189,7 +190,7 @@
 **Siguiente paso si PIVOT:**
 1. Analizar objeciones comunes
 2. Reformular value prop en la landing
-3. Probar otro ángulo (ej: "onboarding emails" en vez de "onboarding flows")
+3. Probar otro ángulo (ej: "agent governance" en vez de "agent onboarding")
 4. Volver a Fase 5 con nueva landing
 
 **KILL (abandonar)** si:
@@ -215,7 +216,7 @@
 - [x] Conectar ianding.es a Vercel
 - [ ] Verificar que Formspree funciona
 - [x] Crear Product Hunt upcoming (launch: lunes 10 marzo)
-- [ ] Preparar ads de Google
+- [ ] Preparar Google Ads (keywords: ai agent deployment/governance)
 
 ### Launch Week (Día 1-7)
 - [ ] Lanzar Product Hunt (Día 1)
