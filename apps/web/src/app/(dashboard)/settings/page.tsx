@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import type { Company, ApiResponse } from "@onboard/shared";
+import type { Company } from "@onboard/shared";
 
 export default function SettingsPage() {
   const { data: session } = useSession();
@@ -30,8 +30,8 @@ export default function SettingsPage() {
 
     async function fetchCompany() {
       try {
-        const res = await api.get<ApiResponse<Company>>("/company");
-        setCompanyName(res.data.name);
+        const res = await api.get<Company>("/companies");
+        setCompanyName(res.name);
       } catch {
         // Company info may not be available
       } finally {
@@ -47,7 +47,7 @@ export default function SettingsPage() {
     setLoading(true);
 
     try {
-      await api.patch("/company", { name: companyName });
+      await api.patch("/companies", { name: companyName });
       toast.success("Company settings updated");
     } catch {
       toast.error("Failed to update settings");
@@ -58,25 +58,25 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-6 max-w-2xl">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground">
+      <div className="animate-fade-in">
+        <h1 className="font-display text-3xl font-bold tracking-tight">Settings</h1>
+        <p className="text-muted-foreground mt-1">
           Manage your organization settings
         </p>
       </div>
 
       {/* Company Info */}
-      <Card>
+      <Card className="animate-fade-in-slow">
         <form onSubmit={handleSave}>
           <CardHeader>
-            <CardTitle>Company Information</CardTitle>
+            <CardTitle className="font-display">Company Information</CardTitle>
             <CardDescription>
               Update your organization&apos;s details.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="companyName">Company Name</Label>
+              <Label htmlFor="companyName" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Company Name</Label>
               <Input
                 id="companyName"
                 value={companyName}
@@ -94,18 +94,18 @@ export default function SettingsPage() {
         </form>
       </Card>
 
-      <Separator />
+      <Separator className="bg-white/[0.06]" />
 
       {/* Danger Zone */}
-      <Card className="border-red-200">
+      <Card className="border-red-500/20">
         <CardHeader>
-          <CardTitle className="text-red-600">Danger Zone</CardTitle>
+          <CardTitle className="font-display text-red-400">Danger Zone</CardTitle>
           <CardDescription>
             Irreversible actions for your organization.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between rounded-lg border border-red-200 p-4">
+          <div className="flex items-center justify-between rounded-lg border border-red-500/15 bg-red-500/[0.03] p-4">
             <div>
               <p className="font-medium">Delete Organization</p>
               <p className="text-sm text-muted-foreground">

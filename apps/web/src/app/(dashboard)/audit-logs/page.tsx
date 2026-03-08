@@ -24,7 +24,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { AuditLog, AuditAction, PaginatedResponse } from "@onboard/shared";
+import type { AuditLog } from "@onboard/shared";
 
 const AUDIT_ACTIONS: { value: string; label: string }[] = [
   { value: "all", label: "All Actions" },
@@ -65,11 +65,11 @@ export default function AuditLogsPage() {
       if (startDate) params.set("startDate", startDate);
       if (endDate) params.set("endDate", endDate);
 
-      const res = await api.get<PaginatedResponse<AuditLog>>(
+      const res = await api.get<{ data: AuditLog[]; page: number; limit: number }>(
         `/audit-logs?${params.toString()}`
       );
       setLogs(res.data);
-      setTotalPages(res.totalPages);
+      setTotalPages(res.data.length < 20 ? page : page + 1);
     } catch {
       setLogs([]);
     } finally {
@@ -111,10 +111,10 @@ export default function AuditLogsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between animate-fade-in">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Audit Logs</h1>
-          <p className="text-muted-foreground">
+          <h1 className="font-display text-3xl font-bold tracking-tight">Audit Logs</h1>
+          <p className="text-muted-foreground mt-1">
             Track all actions performed in your organization
           </p>
         </div>
@@ -125,9 +125,9 @@ export default function AuditLogsPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap items-end gap-4">
+      <div className="flex flex-wrap items-end gap-4 animate-fade-in">
         <div className="space-y-2">
-          <Label>Action Type</Label>
+          <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Action Type</Label>
           <Select
             value={actionFilter}
             onValueChange={(v) => {
@@ -148,7 +148,7 @@ export default function AuditLogsPage() {
           </Select>
         </div>
         <div className="space-y-2">
-          <Label>Start Date</Label>
+          <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Start Date</Label>
           <Input
             type="date"
             value={startDate}
@@ -160,7 +160,7 @@ export default function AuditLogsPage() {
           />
         </div>
         <div className="space-y-2">
-          <Label>End Date</Label>
+          <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">End Date</Label>
           <Input
             type="date"
             value={endDate}
@@ -181,32 +181,32 @@ export default function AuditLogsPage() {
           ))}
         </div>
       ) : logs.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground">
+        <div className="text-center py-16 text-muted-foreground">
           No audit logs found.
         </div>
       ) : (
         <>
-          <div className="rounded-md border">
+          <div className="rounded-xl border border-white/[0.06] overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Timestamp</TableHead>
-                  <TableHead>Action</TableHead>
-                  <TableHead>Resource Type</TableHead>
-                  <TableHead>User</TableHead>
-                  <TableHead>Details</TableHead>
+                <TableRow className="border-white/[0.06] hover:bg-transparent">
+                  <TableHead className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Timestamp</TableHead>
+                  <TableHead className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Action</TableHead>
+                  <TableHead className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Resource Type</TableHead>
+                  <TableHead className="text-xs uppercase tracking-wider text-muted-foreground font-medium">User</TableHead>
+                  <TableHead className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Details</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {logs.map((log) => (
-                  <TableRow key={log.id}>
-                    <TableCell className="whitespace-nowrap">
+                  <TableRow key={log.id} className="border-white/[0.04] hover:bg-white/[0.02] transition-colors">
+                    <TableCell className="whitespace-nowrap text-muted-foreground">
                       {new Date(log.createdAt).toLocaleString()}
                     </TableCell>
                     <TableCell className="font-medium">{log.action}</TableCell>
-                    <TableCell>{log.resourceType}</TableCell>
-                    <TableCell>{log.userId || "-"}</TableCell>
-                    <TableCell className="max-w-[300px] truncate">
+                    <TableCell className="text-muted-foreground">{log.resourceType}</TableCell>
+                    <TableCell className="text-muted-foreground">{log.userId || "-"}</TableCell>
+                    <TableCell className="max-w-[300px] truncate text-muted-foreground">
                       {Object.keys(log.details).length > 0
                         ? JSON.stringify(log.details)
                         : "-"}

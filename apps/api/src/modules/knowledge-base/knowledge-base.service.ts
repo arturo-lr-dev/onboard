@@ -32,6 +32,7 @@ export class KnowledgeBaseService {
     companyId: string,
     userId: string,
     file: Express.Multer.File,
+    title?: string,
   ) {
     const ext = '.' + file.originalname.split('.').pop()?.toLowerCase();
     if (!ALLOWED_EXTENSIONS.includes(ext)) {
@@ -57,7 +58,7 @@ export class KnowledgeBaseService {
       .insert(schema.knowledgeBaseDocuments)
       .values({
         companyId,
-        title: file.originalname.replace(/\.[^/.]+$/, ''),
+        title: title || file.originalname.replace(/\.[^/.]+$/, ''),
         fileName: file.originalname,
         fileType: ext.replace('.', ''),
         fileSize: file.size,

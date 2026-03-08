@@ -33,7 +33,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { AgentRole, Agent, ApiResponse } from "@onboard/shared";
+import type { AgentRole, Agent } from "@onboard/shared";
 import { AGENT_ROLES } from "@onboard/shared";
 
 const STEPS = [
@@ -51,14 +51,9 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // Step 1: Company
   const [companyName, setCompanyName] = useState("");
-
-  // Step 2: Agent
   const [agentName, setAgentName] = useState("");
   const [agentRole, setAgentRole] = useState<AgentRole>("customer_support");
-
-  // Step 3: Document
   const [docFile, setDocFile] = useState<File | null>(null);
   const [docTitle, setDocTitle] = useState("");
 
@@ -88,7 +83,7 @@ export default function OnboardingPage() {
     }
     setLoading(true);
     try {
-      await api.patch("/company", { name: companyName });
+      await api.patch("/companies", { name: companyName });
       setStep(1);
     } catch {
       toast.error("Failed to update company name");
@@ -104,7 +99,7 @@ export default function OnboardingPage() {
     }
     setLoading(true);
     try {
-      await api.post<ApiResponse<Agent>>("/agents", {
+      await api.post<Agent>("/agents", {
         name: agentName,
         role: agentRole,
       });
@@ -118,7 +113,6 @@ export default function OnboardingPage() {
 
   async function handleDocumentStep() {
     if (!docFile) {
-      // Allow skipping
       setStep(3);
       return;
     }
@@ -130,7 +124,7 @@ export default function OnboardingPage() {
 
       const API_URL =
         process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-      const res = await fetch(`${API_URL}/api/v1/documents`, {
+      const res = await fetch(`${API_URL}/api/v1/knowledge-base/upload`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${session?.user?.accessToken}`,
@@ -150,27 +144,32 @@ export default function OnboardingPage() {
   const progress = ((step + 1) / STEPS.length) * 100;
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-midnight to-slate-850">
+    <div className="relative flex min-h-screen flex-col overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-midnight" />
+      <div className="absolute inset-0 bg-mesh-auth animate-mesh-drift" />
+      <div className="absolute inset-0 grid-pattern opacity-30" />
+
       {/* Progress Bar */}
-      <div className="h-1 w-full bg-white/10">
+      <div className="relative h-1 w-full bg-white/[0.06]">
         <div
-          className="h-full bg-cyan transition-all duration-500"
+          className="h-full bg-gradient-to-r from-teal-500 to-teal-400 transition-all duration-700 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
 
-      <div className="flex flex-1 flex-col items-center justify-center p-4">
+      <div className="relative flex flex-1 flex-col items-center justify-center p-4">
         {/* Steps indicator */}
-        <div className="mb-8 flex items-center gap-4">
+        <div className="mb-8 flex items-center gap-4 animate-fade-in">
           {STEPS.map((s, i) => (
             <div key={s.label} className="flex items-center gap-2">
               <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
                   i < step
-                    ? "bg-cyan text-midnight"
+                    ? "bg-gradient-to-br from-teal-400 to-teal-500 text-midnight"
                     : i === step
-                    ? "bg-cyan/20 text-cyan border-2 border-cyan"
-                    : "bg-white/10 text-white/40"
+                    ? "bg-teal/[0.1] text-teal-300 border border-teal/30"
+                    : "bg-white/[0.04] text-white/30 border border-white/[0.06]"
                 }`}
               >
                 {i < step ? (
@@ -182,18 +181,18 @@ export default function OnboardingPage() {
               <span
                 className={`text-sm hidden md:inline ${
                   i === step
-                    ? "font-medium text-white"
+                    ? "font-medium text-foreground"
                     : i < step
-                    ? "text-cyan"
-                    : "text-white/40"
+                    ? "text-teal-300"
+                    : "text-white/30"
                 }`}
               >
                 {s.label}
               </span>
               {i < STEPS.length - 1 && (
                 <div
-                  className={`h-px w-8 ${
-                    i < step ? "bg-cyan" : "bg-white/10"
+                  className={`h-px w-8 transition-colors ${
+                    i < step ? "bg-teal-400/50" : "bg-white/[0.06]"
                   }`}
                 />
               )}
@@ -201,13 +200,13 @@ export default function OnboardingPage() {
           ))}
         </div>
 
-        <Card className="w-full max-w-lg">
+        <Card className="w-full max-w-lg border-white/[0.08] bg-white/[0.03] backdrop-blur-2xl animate-fade-in-slow">
           {/* Step 1: Company */}
           {step === 0 && (
             <>
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">
-                  Welcome to Onboard!
+                <CardTitle className="font-display text-2xl">
+                  Welcome to <span className="text-gradient">Onboard</span>!
                 </CardTitle>
                 <CardDescription>
                   Let&apos;s start by confirming your company name.
@@ -215,7 +214,7 @@ export default function OnboardingPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="companyName">Company Name</Label>
+                  <Label htmlFor="companyName" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Company Name</Label>
                   <Input
                     id="companyName"
                     placeholder="Acme Inc."
@@ -226,6 +225,7 @@ export default function OnboardingPage() {
                 </div>
                 <Button
                   className="w-full"
+                  size="lg"
                   onClick={handleCompanyStep}
                   disabled={loading}
                 >
@@ -240,7 +240,7 @@ export default function OnboardingPage() {
           {step === 1 && (
             <>
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">
+                <CardTitle className="font-display text-2xl">
                   Create Your First Agent
                 </CardTitle>
                 <CardDescription>
@@ -249,7 +249,7 @@ export default function OnboardingPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="agentName">Agent Name</Label>
+                  <Label htmlFor="agentName" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Agent Name</Label>
                   <Input
                     id="agentName"
                     placeholder="e.g., Support Bot"
@@ -259,7 +259,7 @@ export default function OnboardingPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label>Role</Label>
+                  <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Role</Label>
                   <Select
                     value={agentRole}
                     onValueChange={(v) => setAgentRole(v as AgentRole)}
@@ -283,6 +283,7 @@ export default function OnboardingPage() {
                 </div>
                 <Button
                   className="w-full"
+                  size="lg"
                   onClick={handleAgentStep}
                   disabled={loading}
                 >
@@ -297,7 +298,7 @@ export default function OnboardingPage() {
           {step === 2 && (
             <>
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">
+                <CardTitle className="font-display text-2xl">
                   Upload Your First Document
                 </CardTitle>
                 <CardDescription>
@@ -308,16 +309,16 @@ export default function OnboardingPage() {
               <CardContent className="space-y-4">
                 <div
                   {...getRootProps()}
-                  className={`flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 text-center cursor-pointer transition-colors ${
+                  className={`flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-8 text-center cursor-pointer transition-all duration-200 ${
                     isDragActive
-                      ? "border-cyan bg-cyan/5"
-                      : "border-gray-300 hover:border-cyan/50"
+                      ? "border-teal-400/50 bg-teal/[0.05]"
+                      : "border-white/[0.08] hover:border-white/[0.15] hover:bg-white/[0.02]"
                   }`}
                 >
                   <input {...getInputProps()} />
                   {docFile ? (
                     <div className="flex items-center gap-3">
-                      <FileText className="h-8 w-8 text-cyan" />
+                      <FileText className="h-8 w-8 text-teal-400" />
                       <div className="text-left">
                         <p className="font-medium">{docFile.name}</p>
                         <p className="text-sm text-muted-foreground">
@@ -327,6 +328,7 @@ export default function OnboardingPage() {
                       <Button
                         variant="ghost"
                         size="icon"
+                        className="h-8 w-8"
                         onClick={(e) => {
                           e.stopPropagation();
                           setDocFile(null);
@@ -337,7 +339,9 @@ export default function OnboardingPage() {
                     </div>
                   ) : (
                     <>
-                      <Upload className="h-10 w-10 text-muted-foreground mb-2" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] mb-3">
+                        <Upload className="h-6 w-6 text-muted-foreground" />
+                      </div>
                       <p className="text-sm font-medium">
                         Drag & drop a file here, or click to browse
                       </p>
@@ -349,7 +353,7 @@ export default function OnboardingPage() {
                 </div>
                 {docFile && (
                   <div className="space-y-2">
-                    <Label htmlFor="docTitle">Document Title</Label>
+                    <Label htmlFor="docTitle" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Document Title</Label>
                     <Input
                       id="docTitle"
                       value={docTitle}
@@ -362,12 +366,14 @@ export default function OnboardingPage() {
                   <Button
                     variant="outline"
                     className="flex-1"
+                    size="lg"
                     onClick={() => setStep(3)}
                   >
                     Skip
                   </Button>
                   <Button
                     className="flex-1"
+                    size="lg"
                     onClick={handleDocumentStep}
                     disabled={loading || !docFile}
                   >
@@ -382,10 +388,10 @@ export default function OnboardingPage() {
           {step === 3 && (
             <>
               <CardHeader className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-cyan/10">
-                  <PartyPopper className="h-8 w-8 text-cyan" />
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500/20 to-teal-600/10 border border-teal/10">
+                  <PartyPopper className="h-8 w-8 text-teal-400" />
                 </div>
-                <CardTitle className="text-2xl">
+                <CardTitle className="font-display text-2xl">
                   You&apos;re All Set!
                 </CardTitle>
                 <CardDescription>
@@ -396,6 +402,7 @@ export default function OnboardingPage() {
               <CardContent>
                 <Button
                   className="w-full"
+                  size="lg"
                   onClick={() => router.push("/dashboard")}
                 >
                   Go to Dashboard

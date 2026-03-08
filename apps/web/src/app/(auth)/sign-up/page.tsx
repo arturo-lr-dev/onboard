@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
+import { Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -44,7 +45,6 @@ export default function SignUpPage() {
         return;
       }
 
-      // Auto sign in after registration
       const result = await signIn("credentials", {
         email,
         password,
@@ -68,23 +68,30 @@ export default function SignUpPage() {
   }
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader className="space-y-1 text-center">
-        <div className="mb-4">
-          <h1 className="text-3xl font-bold text-cyan">Onboard</h1>
-          <p className="text-sm text-muted-foreground">
-            AI Agent Onboarding Platform
-          </p>
+    <Card className="mx-auto w-full max-w-[420px] border-white/[0.08] bg-white/[0.03] backdrop-blur-2xl animate-fade-in-slow">
+      <CardHeader className="space-y-1 text-center pb-2">
+        <div className="mb-6 flex flex-col items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg shadow-teal/20">
+            <Bot className="h-6 w-6 text-midnight" />
+          </div>
+          <div>
+            <h1 className="font-display text-2xl font-bold">
+              <span className="text-gradient">On</span>board
+            </h1>
+            <p className="text-xs text-muted-foreground mt-1">
+              AI Agent Onboarding Platform
+            </p>
+          </div>
         </div>
-        <CardTitle className="text-2xl">Create an account</CardTitle>
+        <CardTitle className="font-display text-xl">Create an account</CardTitle>
         <CardDescription>
           Get started with Onboard for your organization
         </CardDescription>
       </CardHeader>
       <form onSubmit={onSubmit}>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 pt-4">
           <div className="space-y-2">
-            <Label htmlFor="fullName">Full Name</Label>
+            <Label htmlFor="fullName" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Full Name</Label>
             <Input
               id="fullName"
               type="text"
@@ -95,7 +102,7 @@ export default function SignUpPage() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="companyName">Company Name</Label>
+            <Label htmlFor="companyName" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Company Name</Label>
             <Input
               id="companyName"
               type="text"
@@ -106,7 +113,7 @@ export default function SignUpPage() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Email</Label>
             <Input
               id="email"
               type="email"
@@ -117,7 +124,7 @@ export default function SignUpPage() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Password</Label>
             <Input
               id="password"
               type="password"
@@ -129,13 +136,13 @@ export default function SignUpPage() {
             />
           </div>
         </CardContent>
-        <CardFooter className="flex flex-col space-y-4">
-          <Button type="submit" className="w-full" disabled={loading}>
+        <CardFooter className="flex flex-col space-y-4 pt-2">
+          <Button type="submit" className="w-full" size="lg" disabled={loading}>
             {loading ? "Creating account..." : "Create account"}
           </Button>
           <p className="text-sm text-muted-foreground text-center">
             Already have an account?{" "}
-            <Link href="/sign-in" className="text-cyan hover:underline">
+            <Link href="/sign-in" className="text-teal-300 hover:text-teal-200 transition-colors">
               Sign in
             </Link>
           </p>

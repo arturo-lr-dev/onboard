@@ -34,7 +34,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { KnowledgeBaseDocument, ApiResponse } from "@onboard/shared";
+import type { KnowledgeBaseDocument } from "@onboard/shared";
 import { DOCUMENT_STATUS_LABELS } from "@onboard/shared";
 
 const ACCEPTED_TYPES: Record<string, string[]> = {
@@ -42,16 +42,16 @@ const ACCEPTED_TYPES: Record<string, string[]> = {
   "text/markdown": [".md"],
   "text/plain": [".txt"],
 };
-const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_SIZE = 10 * 1024 * 1024;
 
 function fileTypeIcon(fileType: string) {
   switch (fileType) {
     case "pdf":
-      return <FileType className="h-8 w-8 text-red-500" />;
+      return <FileType className="h-8 w-8 text-red-400" />;
     case "md":
-      return <FileText className="h-8 w-8 text-blue-500" />;
+      return <FileText className="h-8 w-8 text-blue-400" />;
     default:
-      return <File className="h-8 w-8 text-gray-500" />;
+      return <File className="h-8 w-8 text-muted-foreground" />;
   }
 }
 
@@ -80,10 +80,10 @@ export default function KnowledgeBasePage() {
 
   const fetchDocuments = useCallback(async () => {
     try {
-      const res = await api.get<ApiResponse<KnowledgeBaseDocument[]>>(
-        "/documents"
+      const res = await api.get<KnowledgeBaseDocument[]>(
+        "/knowledge-base"
       );
-      setDocuments(res.data);
+      setDocuments(res);
     } catch {
       setDocuments([]);
     } finally {
@@ -132,7 +132,7 @@ export default function KnowledgeBasePage() {
 
       const API_URL =
         process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-      const res = await fetch(`${API_URL}/api/v1/documents`, {
+      const res = await fetch(`${API_URL}/api/v1/knowledge-base/upload`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${session?.user?.accessToken}`,
@@ -164,7 +164,7 @@ export default function KnowledgeBasePage() {
       return;
 
     try {
-      await api.del(`/documents/${doc.id}`);
+      await api.del(`/knowledge-base/${doc.id}`);
       setDocuments((prev) => prev.filter((d) => d.id !== doc.id));
       toast.success("Document deleted");
     } catch {
@@ -175,10 +175,10 @@ export default function KnowledgeBasePage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between animate-fade-in">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Knowledge Base</h1>
-          <p className="text-muted-foreground">
+          <h1 className="font-display text-3xl font-bold tracking-tight">Knowledge Base</h1>
+          <p className="text-muted-foreground mt-1">
             Manage documents for your AI agents
           </p>
         </div>
@@ -191,7 +191,7 @@ export default function KnowledgeBasePage() {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Upload Document</DialogTitle>
+              <DialogTitle className="font-display">Upload Document</DialogTitle>
               <DialogDescription>
                 Upload a document to your knowledge base. Supported formats:
                 PDF, Markdown, and plain text.
@@ -200,16 +200,16 @@ export default function KnowledgeBasePage() {
             <div className="space-y-4">
               <div
                 {...getRootProps()}
-                className={`flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 text-center cursor-pointer transition-colors ${
+                className={`flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-8 text-center cursor-pointer transition-all duration-200 ${
                   isDragActive
-                    ? "border-cyan bg-cyan/5"
-                    : "border-gray-300 hover:border-cyan/50"
+                    ? "border-teal-400/50 bg-teal/[0.05]"
+                    : "border-white/[0.08] hover:border-white/[0.15] hover:bg-white/[0.02]"
                 }`}
               >
                 <input {...getInputProps()} />
                 {uploadFile ? (
                   <div className="flex items-center gap-3">
-                    <FileText className="h-8 w-8 text-cyan" />
+                    <FileText className="h-8 w-8 text-teal-400" />
                     <div className="text-left">
                       <p className="font-medium">{uploadFile.name}</p>
                       <p className="text-sm text-muted-foreground">
@@ -219,6 +219,7 @@ export default function KnowledgeBasePage() {
                     <Button
                       variant="ghost"
                       size="icon"
+                      className="h-8 w-8"
                       onClick={(e) => {
                         e.stopPropagation();
                         setUploadFile(null);
@@ -229,7 +230,9 @@ export default function KnowledgeBasePage() {
                   </div>
                 ) : (
                   <>
-                    <Upload className="h-10 w-10 text-muted-foreground mb-2" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] mb-3">
+                      <Upload className="h-6 w-6 text-muted-foreground" />
+                    </div>
                     <p className="text-sm font-medium">
                       Drag & drop a file here, or click to browse
                     </p>
@@ -241,7 +244,7 @@ export default function KnowledgeBasePage() {
               </div>
               {uploadFile && (
                 <div className="space-y-2">
-                  <Label htmlFor="title">Document Title</Label>
+                  <Label htmlFor="title" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Document Title</Label>
                   <Input
                     id="title"
                     value={uploadTitle}
@@ -281,10 +284,12 @@ export default function KnowledgeBasePage() {
           ))}
         </div>
       ) : documents.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-12 text-center">
-          <FileText className="h-12 w-12 text-muted-foreground mb-4" />
-          <h3 className="text-lg font-semibold">No documents yet</h3>
-          <p className="text-muted-foreground mb-4">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/[0.08] p-16 text-center animate-fade-in-slow">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] mb-5">
+            <FileText className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h3 className="font-display text-lg font-semibold">No documents yet</h3>
+          <p className="text-muted-foreground mt-1 mb-5 max-w-sm">
             Upload your first document to build your knowledge base.
           </p>
           <Button onClick={() => setUploadOpen(true)}>
@@ -294,13 +299,15 @@ export default function KnowledgeBasePage() {
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {documents.map((doc) => (
-            <Card key={doc.id} className="flex flex-col">
+          {documents.map((doc, i) => (
+            <Card key={doc.id} className={`group flex flex-col hover:border-white/[0.1] animate-fade-in opacity-0 stagger-${Math.min(i + 1, 5)}`}>
               <CardHeader className="flex flex-row items-start gap-4 space-y-0">
-                {fileTypeIcon(doc.fileType)}
-                <div className="flex-1 space-y-1">
-                  <CardTitle className="text-base">{doc.title}</CardTitle>
-                  <CardDescription>{doc.fileName}</CardDescription>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] shrink-0">
+                  {fileTypeIcon(doc.fileType)}
+                </div>
+                <div className="flex-1 space-y-1 min-w-0">
+                  <CardTitle className="text-base truncate">{doc.title}</CardTitle>
+                  <CardDescription className="truncate">{doc.fileName}</CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="flex-1">
@@ -308,7 +315,7 @@ export default function KnowledgeBasePage() {
                   <Badge variant={statusBadgeVariant(doc.status)}>
                     {DOCUMENT_STATUS_LABELS[doc.status]}
                   </Badge>
-                  <span>&middot;</span>
+                  <span className="text-white/[0.15]">&middot;</span>
                   <span>{(doc.fileSize / 1024).toFixed(1)} KB</span>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">
@@ -319,7 +326,7 @@ export default function KnowledgeBasePage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="text-red-600 hover:text-red-700"
+                  className="text-red-400 hover:text-red-300 hover:border-red-500/30 hover:bg-red-500/[0.05]"
                   onClick={() => handleDelete(doc)}
                 >
                   <Trash2 className="mr-2 h-4 w-4" />

@@ -1,22 +1,24 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  darkMode: 'class',
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        midnight: '#0A1128',
-        cyan: {
-          DEFAULT: '#00D9FF',
-          50: '#E5FBFF',
-          100: '#B3F4FF',
-          500: '#00D9FF',
-          600: '#00B8D9',
-        },
-        steel: '#7A8BA0',
-        slate: {
-          850: '#1E293B',
+        midnight: '#080d1a',
+        'midnight-light': '#0e1528',
+        teal: {
+          DEFAULT: '#3dd8c5',
+          50: '#ecfdf8',
+          100: '#c6fae9',
+          200: '#8ef4d5',
+          300: '#4de8c0',
+          400: '#3dd8c5',
+          500: '#1abb9e',
+          600: '#0f9a82',
+          700: '#107b6a',
+          800: '#126155',
+          900: '#135047',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -58,7 +60,8 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
     },

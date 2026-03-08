@@ -4,6 +4,7 @@ import {
   Post,
   Delete,
   Param,
+  Body,
   UseInterceptors,
   UploadedFile,
 } from '@nestjs/common';
@@ -32,8 +33,9 @@ export class KnowledgeBaseController {
     @CurrentUser() user: JwtPayload,
     @CurrentCompany() companyId: string,
     @UploadedFile() file: Express.Multer.File,
+    @Body('title') title?: string,
   ) {
-    return this.knowledgeBaseService.upload(companyId, user.sub, file);
+    return this.knowledgeBaseService.upload(companyId, user.sub, file, title);
   }
 
   @Delete(':id')

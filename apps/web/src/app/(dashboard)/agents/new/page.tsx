@@ -25,7 +25,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { Agent, AgentRole, ApiResponse } from "@onboard/shared";
+import type { Agent, AgentRole } from "@onboard/shared";
 import {
   AGENT_ROLES,
   AGENT_PERMISSIONS,
@@ -60,7 +60,7 @@ export default function NewAgentPage() {
   async function handleSubmit() {
     setLoading(true);
     try {
-      const res = await api.post<ApiResponse<Agent>>("/agents", {
+      const res = await api.post<Agent>("/agents", {
         name,
         role,
         description: description || undefined,
@@ -68,7 +68,7 @@ export default function NewAgentPage() {
         systemPrompt: systemPrompt || undefined,
       });
       toast.success("Agent created successfully!");
-      router.push(`/agents/${res.data.id}`);
+      router.push(`/agents/${res.id}`);
     } catch {
       toast.error("Failed to create agent");
     } finally {
@@ -79,16 +79,16 @@ export default function NewAgentPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       {/* Steps indicator */}
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-2 animate-fade-in">
         {STEPS.map((s, i) => (
           <div key={s} className="flex items-center gap-2">
             <div
-              className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ${
+              className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium transition-all duration-300 ${
                 i < step
-                  ? "bg-cyan text-midnight"
+                  ? "bg-gradient-to-br from-teal-400 to-teal-500 text-midnight"
                   : i === step
-                  ? "bg-cyan/20 text-cyan border-2 border-cyan"
-                  : "bg-muted text-muted-foreground"
+                  ? "bg-teal/[0.1] text-teal-300 border border-teal/30"
+                  : "bg-white/[0.04] text-muted-foreground border border-white/[0.06]"
               }`}
             >
               {i < step ? <Check className="h-4 w-4" /> : i + 1}
@@ -104,8 +104,8 @@ export default function NewAgentPage() {
             </span>
             {i < STEPS.length - 1 && (
               <div
-                className={`h-px w-8 ${
-                  i < step ? "bg-cyan" : "bg-muted"
+                className={`h-px w-8 transition-colors ${
+                  i < step ? "bg-teal-400/50" : "bg-white/[0.06]"
                 }`}
               />
             )}
@@ -113,19 +113,19 @@ export default function NewAgentPage() {
         ))}
       </div>
 
-      <Card>
+      <Card className="animate-fade-in-slow">
         {/* Step 1: Basic Info */}
         {step === 0 && (
           <>
             <CardHeader>
-              <CardTitle>Basic Information</CardTitle>
+              <CardTitle className="font-display">Basic Information</CardTitle>
               <CardDescription>
                 Give your agent a name and select its role.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Agent Name</Label>
+                <Label htmlFor="name" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Agent Name</Label>
                 <Input
                   id="name"
                   placeholder="e.g., Support Bot"
@@ -134,7 +134,7 @@ export default function NewAgentPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="role">Role</Label>
+                <Label htmlFor="role" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Role</Label>
                 <Select
                   value={role}
                   onValueChange={(v) => setRole(v as AgentRole)}
@@ -160,7 +160,7 @@ export default function NewAgentPage() {
                 </p>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="description">Description (optional)</Label>
+                <Label htmlFor="description" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Description (optional)</Label>
                 <Textarea
                   id="description"
                   placeholder="Describe what this agent does..."
@@ -177,7 +177,7 @@ export default function NewAgentPage() {
         {step === 1 && (
           <>
             <CardHeader>
-              <CardTitle>Permissions</CardTitle>
+              <CardTitle className="font-display">Permissions</CardTitle>
               <CardDescription>
                 Select the permissions this agent should have.
               </CardDescription>
@@ -187,13 +187,17 @@ export default function NewAgentPage() {
                 {AGENT_PERMISSIONS.map((perm) => (
                   <label
                     key={perm}
-                    className="flex items-center gap-3 rounded-lg border p-3 cursor-pointer hover:bg-muted/50 transition-colors"
+                    className={`flex items-center gap-3 rounded-lg border p-3 cursor-pointer transition-all duration-200 ${
+                      permissions.includes(perm)
+                        ? "border-teal/30 bg-teal/[0.05]"
+                        : "border-white/[0.06] hover:bg-white/[0.02] hover:border-white/[0.1]"
+                    }`}
                   >
                     <input
                       type="checkbox"
                       checked={permissions.includes(perm)}
                       onChange={() => togglePermission(perm)}
-                      className="h-4 w-4 rounded border-gray-300 text-cyan focus:ring-cyan"
+                      className="h-4 w-4 rounded border-white/20 bg-white/[0.05] text-teal-500 focus:ring-teal-500/30"
                     />
                     <span className="text-sm font-medium">
                       {PERMISSION_LABELS[perm]}
@@ -209,7 +213,7 @@ export default function NewAgentPage() {
         {step === 2 && (
           <>
             <CardHeader>
-              <CardTitle>System Prompt</CardTitle>
+              <CardTitle className="font-display">System Prompt</CardTitle>
               <CardDescription>
                 Define the system prompt that guides this agent&apos;s behavior.
               </CardDescription>
@@ -230,34 +234,34 @@ export default function NewAgentPage() {
         {step === 3 && (
           <>
             <CardHeader>
-              <CardTitle>Review Agent</CardTitle>
+              <CardTitle className="font-display">Review Agent</CardTitle>
               <CardDescription>
                 Review the agent configuration before creating.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Name
                 </p>
-                <p className="text-lg font-semibold">{name}</p>
+                <p className="text-lg font-semibold font-display mt-1">{name}</p>
               </div>
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Role
                 </p>
-                <p>{AGENT_ROLES[role]?.label}</p>
+                <p className="mt-1">{AGENT_ROLES[role]?.label}</p>
               </div>
               {description && (
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Description
                   </p>
-                  <p>{description}</p>
+                  <p className="mt-1">{description}</p>
                 </div>
               )}
               <div>
-                <p className="text-sm font-medium text-muted-foreground mb-2">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
                   Permissions
                 </p>
                 {permissions.length === 0 ? (
@@ -276,10 +280,10 @@ export default function NewAgentPage() {
               </div>
               {systemPrompt && (
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground mb-1">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
                     System Prompt
                   </p>
-                  <pre className="rounded-md bg-muted p-3 text-sm font-mono whitespace-pre-wrap">
+                  <pre className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-4 text-sm font-mono whitespace-pre-wrap text-foreground/80">
                     {systemPrompt}
                   </pre>
                 </div>

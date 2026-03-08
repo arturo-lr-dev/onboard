@@ -32,8 +32,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return null;
           }
 
-          const data: { data: AuthResponse } = await res.json();
-          const { accessToken, user } = data.data;
+          const data = await res.json();
+          const payload = data.data ?? data;
+          const accessToken = payload.accessToken ?? payload.access_token;
+          const user = payload.user;
 
           return {
             id: user.id,
@@ -56,6 +58,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/sign-in",
   },
   callbacks: {
+    async authorized({ auth, request }) {
+      const isLoggedIn = !!auth?.user;
+      const isProtected = request.nextUrl.pathname.startsWith("/dashboard") ||
+        request.nextUrl.pathname.startsWith("/onboarding");
+
+      if (isProtected && !isLoggedIn) {
+        return Response.redirect(new URL("/sign-in", request.url));
+      }
+
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.accessToken = user.accessToken;

@@ -12,11 +12,15 @@ export const DATABASE = 'DATABASE';
     {
       provide: DATABASE,
       useFactory: (configService: ConfigService) => {
-        const databaseUrl = configService.get<string>('database.url');
-        if (!databaseUrl) {
-          throw new Error('DATABASE_URL is not configured');
-        }
-        const client = postgres(databaseUrl);
+        const client = postgres({
+          host: configService.get<string>('database.host'),
+          port: configService.get<number>('database.port'),
+          database: configService.get<string>('database.database'),
+          user: configService.get<string>('database.user'),
+          pass: configService.get<string>('database.password'),
+          ssl: { rejectUnauthorized: false },
+          prepare: false,
+        });
         return drizzle(client, { schema });
       },
       inject: [ConfigService],
